@@ -1,14 +1,15 @@
 <script lang="ts">
-    import type { Partie } from "../../model/partie";
     import { PartieController } from "../../controller/partieController";
     import { Link } from "svelte-routing";
+    import type { Writable } from "svelte/store";
+    import type { Partie } from "../../model/partie";
 
     //je crée une instance du controller de la partie
     const partieController:PartieController = new PartieController();
 
 
     //je crée un observable sur la partie
-    let partie = partieController.getPartieStore();
+    let partie:Writable<Partie> = partieController.getPartieStore();
 
     //A chaque fois que la partie change, je récupère la partie
     $:partie = partieController.getPartieStore();
