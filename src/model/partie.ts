@@ -41,13 +41,8 @@ export class Partie {
     public getJoueurCourant():Joueur{
         return this.joueurCourant;
     }
-
-    public joueurAleatoire():Joueur{
-        return this.joueurs[Math.floor(Math.random() * this.joueurs.length)];
-    }
-
     public lancerPartie(){
-        this.joueurCourant = this.joueurAleatoire();
+        this.joueurCourant = this.joueurs[0];
         console.log(this.joueurCourant);
     }
 }
