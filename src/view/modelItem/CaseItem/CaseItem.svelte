@@ -32,6 +32,9 @@
             </div>
         {/if}
         <span class="case__nom" style="font-size: {defineNameSize()}em">{c.getNom()}</span>
+        <div>
+            
+        </div>
     </div>
 </template>
 
@@ -43,9 +46,11 @@
         background-color: white;
         border-radius: 10px;
         padding: 5px;
+        gap: 5px;
 
         &__quartier {
-            height: 10px;
+            height: 5px;
+            width: -webkit-fill-available;
             padding:5px;
             border-radius: 10px;
         }

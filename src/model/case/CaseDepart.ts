@@ -1,4 +1,4 @@
-import type { Joueur } from "../joueur";
+import type { Joueur } from "../Joueur";
 import { Case } from "./Case";
 
 export class CaseDepart extends Case {

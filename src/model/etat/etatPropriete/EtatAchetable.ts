@@ -1,4 +1,4 @@
-import type { Joueur } from "../../joueur";
+import type { Joueur } from "../../Joueur";
 import { EtatAchete } from "./etatAchete";
 import { EtatPropriete } from "./EtatPropriete";
 

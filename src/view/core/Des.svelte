@@ -1,5 +1,4 @@
 <script lang="ts">
-    import Dialog, { Title, Content, Actions } from '@smui/dialog';
     import type { TourController } from "../../controller/TourController";
 
     export let tourController:TourController;

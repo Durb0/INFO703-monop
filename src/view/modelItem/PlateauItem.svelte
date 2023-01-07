@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Plateau } from "../../model/plateau";
+    import type { Plateau } from "../../model/Plateau";
     import CaseItem from "./CaseItem/CaseItem.svelte";
 
 

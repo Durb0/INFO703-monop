@@ -1,6 +1,6 @@
 import { EtatConstructible } from '../../etat/etatPropriete';
 import type { EtatPropriete } from '../../etat/etatPropriete/EtatPropriete';
-import type { Quartier } from '../../quartier/quartier';
+import type { Quartier } from '../../quartier/Quartier';
 import { CaseAchetable } from './CaseAchetable';
 
 export class CasePropriete extends CaseAchetable {

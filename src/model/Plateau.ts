@@ -1,6 +1,6 @@
 import {Case, CaseDepart, CasePropriete} from "./case";
-import { Quartier } from "./quartier/quartier";
-import { PannelPrix } from "./quartier/pannelPrix";
+import { Quartier } from "./quartier/Quartier";
+import { PannelPrix } from "./quartier/PannelPrix";
 
 
 export class Plateau{

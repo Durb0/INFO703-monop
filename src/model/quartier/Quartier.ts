@@ -1,6 +1,6 @@
 import { CasePropriete } from "../case";
-import type { Joueur } from "../joueur";
-import type { PannelPrix } from "./pannelPrix";
+import type { Joueur } from "../Joueur";
+import type { PannelPrix } from "./PannelPrix";
 
 export class Quartier {
 
