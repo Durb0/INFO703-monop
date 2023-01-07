@@ -10,6 +10,8 @@ export abstract class CaseAchetable extends Case {
         this.prix = prix;
     }
 
+    public abstract acheterPropriete(joueur:Joueur):void;
+
     public getPrix():number{
         return this.prix;
     }

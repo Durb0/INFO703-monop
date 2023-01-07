@@ -1,7 +1,7 @@
 import { EtatAchete } from "./EtatAchete";
 
-
 export class EtatConstructible extends EtatAchete {
+
     /**
      * 
      * @returns le loyer selon le nombre de maison

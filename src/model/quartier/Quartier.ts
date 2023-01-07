@@ -80,6 +80,8 @@ export class Quartier {
             }
         }
         // on change l'etat de toutes les cases du quartier en etatConstructibleSansMaison
+        console.info( proprietaire.getNom() + " à le monopole sur le quartier " + this.couleur + ".");
+        console.log("Monopole !")
         return true;
     }
 

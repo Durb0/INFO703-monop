@@ -41,4 +41,14 @@ export class TourController{
             return partie;
         });
     }
+
+    /**
+     * Permet l'achat par le joueur courant de la propriété à la position du joueur courant.
+     */
+    protocolAcheterPropriete() {
+        this.partieStore.update(partie => {
+            partie.getTourCourant().getJoueurCourant().acheterPropriete();
+            return partie;
+        });
+    }
 }

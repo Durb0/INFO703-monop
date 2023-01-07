@@ -1,11 +1,10 @@
 import { EtatAchetable, EtatConstructible } from '../../etat/etatPropriete';
 import type { EtatPropriete } from '../../etat/etatPropriete/EtatPropriete';
+import type { Joueur } from '../../Joueur';
 import type { Quartier } from '../../quartier/Quartier';
 import { CaseAchetable } from './CaseAchetable';
 
 export class CasePropriete extends CaseAchetable {
-    
-    
 
     private quartier:Quartier;
     private etatPropriete:EtatPropriete;
@@ -65,6 +64,11 @@ export class CasePropriete extends CaseAchetable {
         this.getProprietaire().payer(this.quartier.getPrixMaison());
     }
 
+    public acheterPropriete(joueur:Joueur): void {
+        console.log("je passe ici");
+        console.log(joueur);
+        this.etatPropriete.acheterPropriete(joueur);    
+    }
 
     public proprieteConstructible() {
         this.etatPropriete.changeEtat(new EtatConstructible(this));

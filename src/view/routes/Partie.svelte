@@ -25,11 +25,18 @@
         }
     }
 
+    const handlerActionAcheterPropriete = () => {
+        return(event: Event) => {
+            tourController.protocolAcheterPropriete();
+        }
+    }
+
 </script>
 
 <template>
     <div class="partie">
         <Des tourController={tourController}/>
+        <button on:click={handlerActionAcheterPropriete()}>Acheter propriété</button>
         <button on:click={handlerTerminerTour()}>Terminer le tour</button>
         <PlateauItem plateau={$partie.getPlateau()} />
     </div>

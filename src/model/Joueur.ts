@@ -1,15 +1,16 @@
-import type { Case, CasePropriete } from "./case";
+import { Case, CaseAchetable, CasePropriete } from "./case";
 
-export class Joueur{    
+export class Joueur{ 
 
     private nom: string;
     private argent: number;
-    private proprietes: CasePropriete[];
+    private proprietes: CaseAchetable[];
     private position:Case;
 
     constructor(nom:string){
         this.nom = nom;
         this.argent = 1500;
+        this.proprietes = [];
     }
 
     public getNom():string{
@@ -50,8 +51,8 @@ export class Joueur{
     }
 
 
-    ajoutePropriete(casePropriete: CasePropriete) {
-        this.proprietes.push(casePropriete);
+    public ajouterPropriete(caseAchetable: CaseAchetable) {
+        this.proprietes.push(caseAchetable);
     }
 
     /**
@@ -72,6 +73,36 @@ export class Joueur{
         this.position = this.position.getCaseSuivante();
         this.position.ajouterJoueur(this);
     }
+
+    acheterPropriete() {
+        if(this.position instanceof CaseAchetable){
+            if(this.position.getProprietaire() != undefined){
+                console.error("error - acheterPropriete - La case a déjà un propriétaire.");
+            } else if(this.peutPayer(this.position.getPrix())){
+                this.argent = this.argent - this.position.getPrix();
+                this.ajouterPropriete(this.position);
+                this.position.acheterPropriete(this);
+                console.log(this.position);
+            } else {
+                console.error("error - acheterPropriete() - Le joueur n'a pas assez d'argent pour acheter cette case.")
+            }
+        } else {
+            console.error("error - acheterPropriete() - Cette case n'est pas achetable !");
+        }
+    }   
+
+    /**
+     * Retourne si le joueur peux payer le prix passer en paramètre.
+     * @param prix 
+     * @returns boolean
+     */
+    peutPayer(prix:number){
+        return this.argent - prix >= 0;
+    }
+
+    // ===============
+    // GETTER & SETTER
+    // ===============
 
     /**
      * Setter de la position du joueur

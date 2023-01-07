@@ -1,4 +1,5 @@
 import type { CasePropriete } from "../../case";
+import type { Joueur } from "../../Joueur";
 
 export abstract class EtatPropriete {
 
@@ -14,5 +15,9 @@ export abstract class EtatPropriete {
 
     public changeEtat(etat:EtatPropriete):void{
         this.casePropriete.setEtatPropriete(etat);
+    }
+
+    public acheterPropriete(joueur:Joueur):void{
+        console.warn("Pas normal de passer ici...");
     }
 }
