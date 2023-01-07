@@ -1,5 +1,5 @@
 import { Case } from '../Case';
-import type { Joueur } from '../../joueur';
+import type { Joueur } from '../../Joueur';
 
 export abstract class CaseAchetable extends Case {
     private prix:number;

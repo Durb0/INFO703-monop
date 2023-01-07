@@ -2,7 +2,7 @@
     import { PartieController } from "../../controller/partieController";
     import { Link } from "svelte-routing";
     import type { Writable } from "svelte/store";
-    import type { Partie } from "../../model/partie";
+    import type { Partie } from "../../model/Partie";
 
     //je crée une instance du controller de la partie
     const partieController:PartieController = new PartieController();

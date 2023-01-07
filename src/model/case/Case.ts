@@ -1,4 +1,4 @@
-import type { Joueur } from "../joueur";
+import type { Joueur } from "../Joueur";
 
 /**
  * Classe de base pour les cases

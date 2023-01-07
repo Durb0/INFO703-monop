@@ -1,17 +1,20 @@
-import { Joueur } from "./joueur";
-import { Plateau } from "./plateau";
+import { Joueur } from "./Joueur";
+import { Plateau } from "./Plateau";
+import { Tour } from "./Tour";
+
 
 export class Partie {
 
     private static instance:Partie;
-    private joueurCourant:Joueur;
     private joueurs:Joueur[];
     private plateau:Plateau;
+    private tourCourant:Tour;
 
 
     private constructor(){
         this.joueurs = [];
         this.plateau = new Plateau();
+        this.tourCourant = Tour.getInstance();
     }
 
     static getInstance():Partie{
@@ -38,11 +41,8 @@ export class Partie {
         return this.plateau;
     }
 
-    public getJoueurCourant():Joueur{
-        return this.joueurCourant;
-    }
     public lancerPartie(){
-        this.joueurCourant = this.joueurs[0];
-        console.log(this.joueurCourant);
+        this.tourCourant.nouveauTour(this.joueurs[0]);
+        console.log(this.tourCourant.getJoueurCourant());
     }
 }

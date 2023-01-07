@@ -2,7 +2,12 @@
     import PlateauItem from "../modelItem/PlateauItem.svelte";
     import { PartieController } from "../../controller/partieController";
     import type { Writable } from "svelte/store";
-    import type { Partie } from "../../model/partie";
+    import type { Partie } from "../../model/Partie";
+    import { TourController } from "../../controller/TourController";
+    import Des from "../core/Des.svelte";
+
+    //je crée une instance du controller du tour
+    const tourController:TourController = new TourController();
 
     //je crée une instance du controller de la partie
     const partieController:PartieController = new PartieController();
@@ -16,6 +21,8 @@
 
 <template>
     <div class="partie">
+        <Des tourController={tourController}/>
         <PlateauItem plateau={$partie.getPlateau()} />
     </div>
 </template>
+    
