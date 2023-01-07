@@ -1,5 +1,5 @@
 import type { Joueur } from '../joueur';
-import { Case } from './case';
+import { Case } from './Case';
 
 export class CaseTaxe extends Case {
     private montant:number;

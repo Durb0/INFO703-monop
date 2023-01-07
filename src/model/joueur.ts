@@ -1,7 +1,11 @@
+import type { CasePropriete } from "./case";
+
 export class Joueur{
+    
 
     private nom: string;
     private argent: number;
+    private proprietes: CasePropriete[];
 
     constructor(nom:string){
         this.nom = nom;
@@ -25,6 +29,11 @@ export class Joueur{
         this.argent -= montant;
     }
 
+    /**
+     * Le joueur reçoit de l'argent
+     * 
+     * @param montant le montant que le joueur doit recevoir
+     */
     public recevoir(montant:number):void{
         this.argent += montant;
     }
@@ -38,5 +47,10 @@ export class Joueur{
     public payerA(montant:number, joueur:Joueur):void{
         this.payer(montant);
         joueur.recevoir(montant);
+    }
+
+
+    ajoutePropriete(casePropriete: CasePropriete) {
+        this.proprietes.push(casePropriete);
     }
 }

@@ -1,4 +1,4 @@
-import { Case } from '../case';
+import { Case } from '../Case';
 import type { Joueur } from '../../joueur';
 
 export abstract class CaseAchetable extends Case {
@@ -12,6 +12,10 @@ export abstract class CaseAchetable extends Case {
 
     public getPrix():number{
         return this.prix;
+    }
+
+    public setPrix(prix:number):void{
+        this.prix = prix;
     }
 
     public getProprietaire():Joueur{

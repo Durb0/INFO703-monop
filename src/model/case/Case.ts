@@ -1,9 +1,9 @@
 import type { Joueur } from "../joueur";
 
 /**
- * Classe abstraite Case qui va nous permettre de créer des cases plus complexes
+ * Classe de base pour les cases
  */
-export abstract class Case {
+export class Case {
     private nom:string;
 
     private caseSuivante:Case;
