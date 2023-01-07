@@ -1,11 +1,11 @@
-import type { CasePropriete } from "./case";
+import type { Case, CasePropriete } from "./case";
 
-export class Joueur{
-    
+export class Joueur{    
 
     private nom: string;
     private argent: number;
     private proprietes: CasePropriete[];
+    private position:Case;
 
     constructor(nom:string){
         this.nom = nom;
@@ -52,5 +52,32 @@ export class Joueur{
 
     ajoutePropriete(casePropriete: CasePropriete) {
         this.proprietes.push(casePropriete);
+    }
+
+    /**
+     * Déplacement du joueur de n case suivante.
+     * @param totalDeplacement 
+     */
+    public deplacer(totalDeplacement: number) {
+        for(let i:number = 0; i < totalDeplacement; i++){
+            this.deplacer1Case();
+        }
+    }
+
+    /**
+     * Déplacement du joueur d'1 case.
+     */
+    private deplacer1Case(){
+        this.position.retirerJoueur(this);
+        this.position = this.position.getCaseSuivante();
+        this.position.ajouterJoueur(this);
+    }
+
+    /**
+     * Setter de la position du joueur
+     * @param position 
+     */
+    public setPosition(position:Case){
+        this.position = position;
     }
 }

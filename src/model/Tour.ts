@@ -3,40 +3,34 @@ import type { Joueur } from "./Joueur";
 
 export class Tour{
 
-    private static instance:Tour;
     private joueurCourant:Joueur;
     private peutLancer:boolean;
     private des:Des = Des.getInstance();
 
-    private constructor(){ }
-
-    public static getInstance():Tour{
-        if(!Tour.instance){
-            Tour.instance = new Tour();
-        }
-        return this.instance;
+    public constructor(joueur:Joueur){ 
+        this.joueurCourant = joueur;
+        this.peutLancer = true;
     }
 
     public protocolDeplacementSimple(){
         let resultatDes:number[];
         if(this.peutLancer){
             resultatDes = this.des.lancerDes(2);
+            this.deplacerJoueur(resultatDes);
+            this.peutLancer = false;
         } else {
             console.error("Error : tour.ts - actionLancerDes() - le joueur ne respect pas la condition pour lancer les des.");
         }
     }
 
-    public protocolDeplacementDefini(chiffresDes:number[]){
-
+    public protocolDeplacementDefini(resultatDes:number[]){
+        this.deplacerJoueur(resultatDes);
     }
 
-    /**
-     * Initialise l'instance pour un nouveau tour.
-     * @param joueur le nouveau joueur courant
-     */
-    public nouveauTour(joueur:Joueur){
-        this.joueurCourant = joueur;
-        this.peutLancer = true;
+    public deplacerJoueur(chiffresDes:number[]){
+        let totalDeplacement:number = 0;
+        chiffresDes.forEach(el=>{totalDeplacement += el});
+        this.joueurCourant.deplacer(totalDeplacement);
     }
 
     /**

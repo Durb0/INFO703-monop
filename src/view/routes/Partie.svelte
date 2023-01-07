@@ -5,6 +5,7 @@
     import type { Partie } from "../../model/Partie";
     import { TourController } from "../../controller/TourController";
     import Des from "../core/Des.svelte";
+    import { getPartieStore } from "../../store/partieStore";
 
     //je crée une instance du controller du tour
     const tourController:TourController = new TourController();
@@ -13,15 +14,23 @@
     const partieController:PartieController = new PartieController();
 
     //je crée un observable sur la partie
-    let partie:Writable<Partie> = partieController.getPartieStore();
+    let partie:Writable<Partie> = getPartieStore();
 
     //A chaque fois que la partie change, je récupère la partie
-    $:partie = partieController.getPartieStore();
+    $:partie = getPartieStore();
+
+    const handlerTerminerTour = () => {
+        return(event: Event) => {
+            tourController.protocolTerminerTour();
+        }
+    }
+
 </script>
 
 <template>
     <div class="partie">
         <Des tourController={tourController}/>
+        <button on:click={handlerTerminerTour()}>Terminer le tour</button>
         <PlateauItem plateau={$partie.getPlateau()} />
     </div>
 </template>
