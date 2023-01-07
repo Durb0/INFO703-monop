@@ -1,6 +1,7 @@
 import { Case, CaseAchetable, CasePropriete } from "./case";
 
-export class Joueur{ 
+export class Joueur{
+    
 
     private nom: string;
     private argent: number;
@@ -12,6 +13,10 @@ export class Joueur{
         this.argent = 1500;
         this.proprietes = [];
     }
+
+    getPosition() {
+        return this.position;
+    } 
 
     public getNom():string{
         return this.nom;
@@ -63,6 +68,7 @@ export class Joueur{
         for(let i:number = 0; i < totalDeplacement; i++){
             this.deplacer1Case();
         }
+        this.position.actionDePosition(this);
     }
 
     /**
@@ -72,6 +78,7 @@ export class Joueur{
         this.position.retirerJoueur(this);
         this.position = this.position.getCaseSuivante();
         this.position.ajouterJoueur(this);
+        this.position.actionDePassage(this);
     }
 
     acheterPropriete() {

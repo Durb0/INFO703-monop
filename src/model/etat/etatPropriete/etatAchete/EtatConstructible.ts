@@ -7,8 +7,7 @@ export class EtatConstructible extends EtatAchete {
      * @returns le loyer selon le nombre de maison
      */
     public getLoyer():number {
-        // le loyer selon le nombre de maison
-        let loyer:number = this.getCasePropriete().getLoyer();
+        let loyer = this.getCasePropriete().getQuartier().getLoyer(this.getCasePropriete());
         // si il n'y a pas de maison
         if(this.getCasePropriete().getNbMaisons() == 0){
             return loyer * 2;

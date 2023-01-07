@@ -3,17 +3,10 @@
     import { Link } from "svelte-routing";
     import type { Writable } from "svelte/store";
     import type { Partie } from "../../model/Partie";
-    import { getPartieStore } from "../../store/partieStore";
+    import { partieStore } from "../../store/partieStore";
 
     //je crée une instance du controller de la partie
     const partieController:PartieController = new PartieController();
-
-
-    //je crée un observable sur la partie
-    let partie:Writable<Partie> = getPartieStore();
-
-    //A chaque fois que la partie change, je récupère la partie
-    $:partie = getPartieStore();
 
     //Les fonctions lorsque j'appuie sur les boutons
 
@@ -44,7 +37,7 @@
 
 <div class="list-joueur">
     <!-- pour chaque joueur je crée un item pour l'afficher -->
-    {#each $partie.getJoueurs() as joueur}
+    {#each $partieStore.getJoueurs() as joueur}
         <div class="joueur">
             <div class="nom">{joueur.getNom()}</div>
             <button on:click={handleSupprimerJoueur(joueur.getNom())}>Supprimer</button>
