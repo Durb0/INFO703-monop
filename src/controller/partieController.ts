@@ -1,5 +1,5 @@
 import { Writable, writable } from 'svelte/store';
-import { Partie } from '../model/partie';
+import { Partie } from '../model/Partie';
 
 
 export class PartieController{

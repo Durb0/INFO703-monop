@@ -1,4 +1,4 @@
-import type { Joueur } from "../joueur";
+import type { Joueur } from "../Joueur";
 
 /**
  * Classe abstraite Case qui va nous permettre de créer des cases plus complexes
