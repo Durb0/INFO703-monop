@@ -6,11 +6,13 @@ import type { Joueur } from "../Joueur";
 export class Case {
     private nom:string;
 
+    private joueurs:Joueur[];
     private caseSuivante:Case;
     private casePrecedente:Case;
 
     constructor(nom:string) {
         this.nom = nom;
+        this.joueurs = [];
     }
 
     public getNom():string{
@@ -59,5 +61,9 @@ export class Case {
     public setRelationCaseSuivante(caseSuivante:Case):void{
         this.caseSuivante = caseSuivante;
         caseSuivante.setCasePrecedente(this);
+    }
+
+    public getJoueurs():Joueur[]{
+        return this.joueurs;
     }
 }

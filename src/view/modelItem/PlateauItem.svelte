@@ -32,9 +32,10 @@
     .plateau {
         display: grid;
         grid-template-columns: repeat(9, 1fr);
-        grid-template-rows: repeat(9, 1fr);
         background-color: beige;
         gap: 5px;
         padding: 5px;
+        border-radius: 20px;
+        border: 5px solid brown;
     }
 </style>
