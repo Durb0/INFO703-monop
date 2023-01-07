@@ -1,12 +1,14 @@
-import { Writable, writable } from 'svelte/store';
-import { Partie } from '../model/Partie';
+import type { Writable } from "svelte/store";
+import type { Partie } from "../model/Partie";
+import { getPartieStore } from "../store/partieStore";
 
 
 export class PartieController{
-    partieStore:Writable<Partie> = writable<Partie>(Partie.getInstance());
+    
+    private partieStore:Writable<Partie>;
 
-    getPartieStore():Writable<Partie>{
-        return this.partieStore;
+    constructor(){
+        this.partieStore = getPartieStore();
     }
 
     ajouterJoueur(nom:string):void{

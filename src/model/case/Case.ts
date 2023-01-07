@@ -66,4 +66,12 @@ export class Case {
     public getJoueurs():Joueur[]{
         return this.joueurs;
     }
+
+    public retirerJoueur(monJoueur:Joueur){
+        this.joueurs = this.joueurs.filter(joueur => joueur.getNom() != monJoueur.getNom());
+    }
+
+    public ajouterJoueur(monJoueur:Joueur){
+        this.joueurs.push(monJoueur);
+    }
 }
