@@ -29,6 +29,10 @@ export class Quartier {
         return this.cases;
     }
 
+    public getPrix(c:CasePropriete):number{
+        return this.getPannel(c).getPrix();
+    }
+
     public getPrixMaison():number{
         return this.prixMaison;
     }

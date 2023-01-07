@@ -1,4 +1,4 @@
-import {Case, CaseDepart, CasePropriete} from "./case";
+import {Case, CaseDepart, CasePropriete, CaseTaxe} from "./case";
 import { Quartier } from "./quartier/Quartier";
 import { PannelPrix } from "./quartier/PannelPrix";
 
@@ -40,7 +40,17 @@ export class Plateau{
             50,
             [ "Boulevard de Belleville", "Rue Lecourbe" ]
             );
-        this.cases.push(...quartierMarron.getCases());
+
+        let taxe1 = new CaseTaxe("Taxe de Luxe", 75);
+
+        this.cases.push(quartierMarron.getCases()[0]);
+        this.cases.push(taxe1);
+        this.cases.push(quartierMarron.getCases()[1]);
+
+        
+        //gare 1
+        let gare1 = new Case("Gare Montparnasse");
+        this.cases.push(gare1);
 
 
         // quartier bleu ciel
@@ -53,6 +63,9 @@ export class Plateau{
             );
         this.cases.push(...quartierBleuCiel.getCases());
 
+        let casePrison = new Case("Prison");
+        this.cases.push(casePrison);
+
         // quartier rose
         let quartierRose = new Quartier(
             "pink",
@@ -63,6 +76,9 @@ export class Plateau{
             );
         this.cases.push(...quartierRose.getCases());
 
+        //gare 2
+        let gare2 = new Case("Gare Montparnasse");
+        this.cases.push(gare2);
 
         // quartier orange
         let quartierOrange = new Quartier(
@@ -87,6 +103,11 @@ export class Plateau{
             );
         this.cases.push(...quartierRouge.getCases());
 
+
+        //gare 3
+        let gare3 = new Case("Gare Montparnasse");
+        this.cases.push(gare3);
+
         // quartier jaune
         let quartierJaune = new Quartier(
             "yellow",
@@ -96,6 +117,9 @@ export class Plateau{
             [ "Faubourg Saint-Honoré", "Place de la Bourse", "Rue la Fayette" ]
             );
         this.cases.push(...quartierJaune.getCases());
+
+        let caseAllerEnPrison = new Case("Allez en prison");
+        this.cases.push(caseAllerEnPrison);
 
         // quartier vert
         let quartierVert = new Quartier(
@@ -107,6 +131,10 @@ export class Plateau{
             );
         this.cases.push(...quartierVert.getCases());
 
+        //gare 4
+        let gare4 = new Case("Gare Montparnasse");
+        this.cases.push(gare4);
+
         // quartier bleu foncé
         let quartierBleuFonce = new Quartier(
             "darkblue",
@@ -115,8 +143,12 @@ export class Plateau{
             200,
             [ "Avenue des Champs-Élysées", "Rue de la Paix" ]
             );
-        this.cases.push(...quartierBleuFonce.getCases());
         
+        let taxe2 = new CaseTaxe("Taxe de Luxe", 100);
+        this.cases.push(quartierBleuFonce.getCases()[0]);
+        this.cases.push(taxe2);
+        this.cases.push(quartierBleuFonce.getCases()[1]);
+
         this.createRelations();
     }
 

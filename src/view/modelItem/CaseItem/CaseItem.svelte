@@ -1,7 +1,10 @@
 <script lang="ts">
     import {Case, CaseAchetable, CasePropriete} from "../../../model/case"
+    import { EtatAchetable, EtatAchete } from "../../../model/etat/etatPropriete";
 
     export let c!: Case;
+    export let area!: string;
+    export let rot!: string;
 
     /**
      * definit la taille de la police pour le nom selon sa taille, plus elle est grande plus la police est petite
@@ -30,14 +33,10 @@
         return taillePolice;
     }
 
-    function defineNbCasePerSide():number{
-        return 0;
-    }
-
 </script>
 
 <template>
-    <div class="case">
+    <div class="case" style="grid-area: {area}; transform: {rot}">
         {#if c instanceof CasePropriete}
             <div class="case__quartier" style="background-color: {c.getQuartier().getCouleur()}">
 
@@ -49,9 +48,13 @@
                 <span>{j.getNom()}</span>
             {/each}
         </div>
-        <div class="case_prix">
-            {#if c instanceof CaseAchetable}        
-                <span>{c.getPrix()}</span>
+        <div class="case__prix">
+            {#if c instanceof CasePropriete}
+                {#if c.getEtat() instanceof EtatAchetable}
+                    <span class="case__prix--available">{c.getPrix()}</span>
+                {:else if c.getEtat() instanceof EtatAchete}
+                    <span class="case__prix--unavailable">{c.getPrix()}</span>
+                {/if}
             {/if}
         </div>
     </div>
@@ -63,16 +66,13 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        background-color: white;
-        border-radius: 10px;
-        padding: 5px;
+        border: 2px solid black;
         gap: 5px;
 
         &__quartier {
-            height: 5px;
+            height: 10px;
             width: -webkit-fill-available;
-            padding:5px;
-            border-radius: 10px;
+            border-bottom: 2px solid black;
         }
 
         &__nom {
@@ -81,12 +81,25 @@
         &__joueurs {
             height: 50px;
             width: -webkit-fill-available;
-            background-color: antiquewhite;
             border-radius: 5px;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             gap: 5px;
+        }
+
+        &__prix {
+            width: -webkit-fill-available;
+            flex-wrap: wrap;
+            gap: 5px;
+
+            &--available {
+                color: green;
+            }
+
+            &--unavailable {
+                color: red;
+            }
         }
     }
 

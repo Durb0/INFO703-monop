@@ -1,4 +1,4 @@
-import { EtatConstructible } from '../../etat/etatPropriete';
+import { EtatAchetable, EtatConstructible } from '../../etat/etatPropriete';
 import type { EtatPropriete } from '../../etat/etatPropriete/EtatPropriete';
 import type { Quartier } from '../../quartier/Quartier';
 import { CaseAchetable } from './CaseAchetable';
@@ -16,6 +16,7 @@ export class CasePropriete extends CaseAchetable {
         this.quartier = quartier;
         super.setPrix(this.quartier.getPannel(this).getPrix());
         this.nbMaison = 0;
+        this.etatPropriete = new EtatAchetable(this);
     }
 
     public setEtatPropriete(etat: EtatPropriete) {
@@ -36,7 +37,11 @@ export class CasePropriete extends CaseAchetable {
 
     public getLoyer():number {
         return this.quartier.getPannel(this).getLoyer(this.nbMaison);
-    }   
+    }  
+
+    public getPrix(): number {
+        return this.quartier.getPrix(this);
+    }
 
     /**
      * Le joueur vend une maison
