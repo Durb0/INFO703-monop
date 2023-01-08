@@ -49,6 +49,7 @@
                         </div>
                     {/each}
                     <h3>Maisons</h3>
+                    <p>Prix maison : {$caseSelected.getQuartier().getPrixMaison()}</p>
                     <div class="case-selected__content__maisons">
                         <button on:click={handleVendreMaison}>-</button>
                         {#each Array($caseSelected.getNbMaisons()) as _,i}

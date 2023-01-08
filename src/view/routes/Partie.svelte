@@ -9,6 +9,7 @@
     import { partieStore } from "../../store/partieStore";
 
     let conditionAcheter:boolean = true;
+    let conditionTerminerTour:boolean = true;
 
     //je crée une instance du controller du tour
     const tourController:TourController = new TourController();
@@ -17,6 +18,7 @@
     partieStore.subscribe((value) => {
         console.log("Partie changée");
         conditionAcheter = defineConditionAcheter();
+        conditionTerminerTour = defineConditionTerminerTour();
     });
 
     function defineConditionAcheter():boolean{
@@ -29,6 +31,15 @@
             )
         {
                 return false;
+        }
+        return true;
+    }
+
+    function defineConditionTerminerTour():boolean {
+        let tour = $partieStore.getTourCourant();
+
+        if (tour.getPeutLancer() == false) {
+            return false;
         }
         return true;
     }
@@ -58,7 +69,15 @@
             <PlateauItem plateau={$partieStore.getPlateau()}>
                 <Des tourController={tourController}/>
                 <button disabled={conditionAcheter} on:click={handlerActionAcheterPropriete()}>Acheter propriété</button>
-        <button on:click={handlerTerminerTour()}>Terminer le tour</button>
+                <button disabled={conditionTerminerTour} on:click={handlerTerminerTour()}>Terminer le tour</button>
+                <div class="partie__blocks__joueurs">
+                    {#each $partieStore.getJoueurs() as joueur}
+                        <div class="partie__blocks__joueurs__joueur {$partieStore.getTourCourant().getJoueurCourant() == joueur ?'partie__blocks__joueurs__joueur--courant':''}">
+                            <p>{joueur.getNom()}</p>
+                            <p>{joueur.getArgent()}</p>
+                        </div>
+                    {/each}
+                </div>
             </PlateauItem>
             <CaseSelectedItem/>
         </div>
@@ -81,6 +100,28 @@
             justify-content: center;
             height: 100%;
             width: 100%;
+        }
+
+        &__blocks__joueurs {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            &__joueur {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 5px;
+                border: 1px solid black;
+                width: 100px;
+
+                &--courant{
+                    background-color: lawngreen;
+                }
+            }
         }
     }
 </style>
