@@ -17,7 +17,6 @@
 
     //A chaque fois que la partie change, je récupère la partie
     partieStore.subscribe((value) => {
-        console.log("Partie changée");
         conditionAcheter = defineConditionAcheter();
         conditionTerminerTour = defineConditionTerminerTour();
     });

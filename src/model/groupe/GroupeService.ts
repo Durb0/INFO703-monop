@@ -25,12 +25,12 @@ export class GroupeService extends Groupe {
         return nbPropriete;
     }
 
-    public getLoyer(caseAchetable: CaseAchetable): number {
-        let des = this.getResultatDes();
-        if(this.isMonopole(caseAchetable.getProprietaire())){
-            return des * 10;
+    public getLoyer(c: CaseService): number {
+        let res = this.getResultatDes();
+        if(this.isMonopole(c.getProprietaire())){
+            return res * 10;
         }
-        return des * 4;
+        return res * 4;
     }
 
     private getResultatDes():number{

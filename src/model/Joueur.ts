@@ -54,6 +54,7 @@ export class Joueur{
     public payerA(joueur:Joueur, montant:number):void{
         this.payer(montant);
         joueur.recevoir(montant);
+        console.info(this.nom + " donne " + montant + " à " + joueur.getNom());
     }
 
 
@@ -90,7 +91,7 @@ export class Joueur{
             } else if(this.peutPayer(this.position.getPrix())){
                 this.argent = this.argent - this.position.getPrix();
                 this.ajouterPropriete(this.position);
-                console.log(this.position);
+                console.info(this.nom + " a acheté " + this.position.getNom());
             } else {
                 console.error("error - acheterPropriete() - Le joueur n'a pas assez d'argent pour acheter cette case.")
             }

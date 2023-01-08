@@ -6,7 +6,6 @@ export class CaseSelectedController {
 
 
     public setCaseSelected(c: Case): void {
-        console.log("setCaseSelected");
         caseSelected.set(c);
     }
 
