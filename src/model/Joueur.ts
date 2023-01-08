@@ -46,7 +46,7 @@ export class Joueur{
      * @param montant le montant que le joueur doit payer
      * @param joueur le joueur qui doit recevoir l'argent
      */
-    public payerA(montant:number, joueur:Joueur):void{
+    public payerA(joueur:Joueur, montant:number):void{
         this.payer(montant);
         joueur.recevoir(montant);
     }

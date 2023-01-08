@@ -2,12 +2,29 @@
     import {Case, CaseAchetable, CasePropriete} from "../../../model/case"
     import { EtatAchetable, EtatAchete } from "../../../model/etat/etatPropriete";
     import { CaseSelectedController } from "../../../controller/CaseSelectedController";
+    import { joueurSurvole } from "../../../store/joueurSurvole";
+
 
     export let c!: Case;
     export let area!: string;
     export let rot!: string;
 
     let caseCouranteController = new CaseSelectedController();
+
+    let estCaseDeSurvole:boolean = false;
+
+    joueurSurvole.subscribe((joueur) => {
+        if(joueur == null){
+            estCaseDeSurvole = false;
+            return;
+        }else{
+            if(c instanceof CaseAchetable){
+                estCaseDeSurvole = c.getProprietaire() == joueur;
+                return;
+            }
+        }
+        estCaseDeSurvole = false;
+    })
 
     /**
      * definit la taille de la police pour le nom selon sa taille, plus elle est grande plus la police est petite
@@ -44,7 +61,7 @@
 
 <template>
     <!-- svelte-ignore a11y-click-events-have-key-events -->
-    <div class="case" style="grid-area: {area}; transform: {rot}" on:click={handleClickCase}>
+    <div class="case {estCaseDeSurvole ? 'case--survole': ''}" style="grid-area: {area}; transform: {rot}" on:click={handleClickCase}>
         {#if c instanceof CasePropriete}
             <div class="case__quartier" style="background-color: {c.getQuartier().getCouleur()}">
                 {#if c.getNbMaisons() == 5}
@@ -83,6 +100,10 @@
         flex-direction: column;
         border: 2px solid black;
         gap: 5px;
+
+        &--survole {
+            border: 2px solid red;
+        }
 
         &__quartier {
             height: 15px;
