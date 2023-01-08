@@ -9,7 +9,6 @@ export class PartieBuilderClassique extends PartieBuilder {
         partie.getJoueurs().forEach(joueur=>{
             let plateau = partie.getPlateau();
             joueur.setPosition(plateau.getCaseDepart());
-            plateau.getCaseDepart().ajouterJoueur(joueur);
         });
     }
 }

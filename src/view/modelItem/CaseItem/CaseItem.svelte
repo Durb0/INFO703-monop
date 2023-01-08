@@ -3,7 +3,7 @@
     import { EtatAchetable, EtatAchete } from "../../../model/etat/etatPropriete";
     import { CaseSelectedController } from "../../../controller/CaseSelectedController";
     import { joueurSurvole } from "../../../store/joueurSurvole";
-  import { CaseGare } from "../../../model/case/caseAchetable/CaseGare";
+    import { CaseGare } from "../../../model/case/caseAchetable/CaseGare";
 
 
     export let c!: Case;

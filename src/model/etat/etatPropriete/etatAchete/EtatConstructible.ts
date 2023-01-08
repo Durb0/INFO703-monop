@@ -24,12 +24,16 @@ export class EtatConstructible extends EtatAchete {
      */
     public construireMaison() {
         let casePropriete:CasePropriete = this.getCasePropriete();
+        if(casePropriete.getProprietaire().getArgent() < casePropriete.getQuartier().getPrixMaison()){
+            console.warn("error - le joueur n'a pas assez d'argent pour construire une maison.");
+            return;
+        }
         if(casePropriete.getNbMaisons() < 5){
             casePropriete.ajouterMaison();
             casePropriete.getProprietaire().payer(casePropriete.getQuartier().getPrixMaison());
             console.log(casePropriete.getProprietaire());
         } else {
-            console.error("error - le nombre de maison ne peut pas être augmenté.")
+            console.warn("error - le nombre de maison ne peut pas être augmenté.")
         }
     }
 

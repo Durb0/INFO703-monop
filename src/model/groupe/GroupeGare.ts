@@ -1,28 +1,21 @@
 import { CaseGare } from "../case/caseAchetable/CaseGare";
 import type { Joueur } from "../Joueur";
+import { Groupe } from "./Groupe";
 
 
-export class GroupeGare {
+export class GroupeGare extends Groupe {
 
-    private casesGare:CaseGare[];
     private prixGare:number;
     private loyers:number[];
     
     constructor(prixGare:number, loyers:number[],casesNoms:string[]) {
+        super(casesNoms);
         this.prixGare = prixGare;
         this.loyers = loyers;
-        this.casesGare = [];
-        casesNoms.forEach(nom => {
-            this.casesGare.push(new CaseGare(nom, this.prixGare, this));
-        });
     }
 
-    public getCases():CaseGare[]{
-        return this.casesGare;
-    }
-
-    public getCase(index:number):CaseGare{
-        return this.casesGare[index];
+    public createCase(nom:string):CaseGare {
+        return new CaseGare(nom, this);
     }
 
     public getPrixGare():number{
@@ -39,7 +32,7 @@ export class GroupeGare {
 
     public getNbPropriete(joueur:Joueur):number{
         let nbPropriete = 0;
-        this.casesGare.forEach(c => {
+        this.getCases().forEach(c => {
             if(c.getProprietaire() == joueur){
                 nbPropriete++;
             }

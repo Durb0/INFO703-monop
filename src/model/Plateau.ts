@@ -1,10 +1,11 @@
 import {Case, CaseDepart, CasePropriete, CaseTaxe} from "./case";
-import { Quartier } from "./quartier/Quartier";
-import { PannelPrix } from "./quartier/PannelPrix";
-import { GroupeGare } from "./quartier/GroupeGare";
+import { Quartier } from "./groupe/Quartier";
+import { PannelPrix } from "./groupe/PannelPrix";
+import { GroupeGare } from "./groupe/GroupeGare";
 
 
 export class Plateau{
+    
 
     private cases:Case[];
     private caseDepart: CaseDepart;
@@ -16,6 +17,16 @@ export class Plateau{
 
     public getCases():Case[]{
         return this.cases;
+    }
+
+    getCaseParNom(nom: string): Case {
+        let caseTrouvee: Case = null;
+        this.cases.forEach(c => {
+            if(c.getNom() == nom){
+                caseTrouvee = c;
+            }
+        });
+        return caseTrouvee;
     }
 
     public updateCase(cas:Case){

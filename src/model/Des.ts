@@ -4,6 +4,12 @@
  */
 export class Des {
 
+    private dernierResultat:number = 0;
+
+    public getDernierResultat(): number {
+        return this.dernierResultat;
+    }
+
     private static instance:Des;
     private nbFaces:number = 6;
 
@@ -31,6 +37,7 @@ export class Des {
         for(i = 0; i<nbDes ; i++){
             res.push(this.getRandomNumber(1,6));
         }
+        this.dernierResultat = res.reduce((a,b) => a+b);
         return res;
     }
 
