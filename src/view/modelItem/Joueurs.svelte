@@ -13,12 +13,10 @@
     });
 
     function handleHoverJoueur(joueur:Joueur) {
-        console.log("joueur survolé : " + joueur.getNom());
         joueurSurvole.set(joueur);
     }
 
     function handleLeaveJoueur() {
-        console.log("joueur survolé : null");
         joueurSurvole.set(null);
     }
 

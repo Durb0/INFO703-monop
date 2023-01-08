@@ -3,11 +3,12 @@
     import type { Partie } from "../../model/Partie";
     import { TourController } from "../../controller/TourController";
     import Des from "../core/Des.svelte";
-    import { Case, CasePropriete } from "../../model/case";
+    import { Case, CaseAchetable, CasePropriete } from "../../model/case";
     import { EtatAchetable } from "../../model/etat/etatPropriete";
     import CaseSelectedItem from "../modelItem/CaseItem/CaseSelectedItem.svelte";
     import { partieStore } from "../../store/partieStore";
     import Joueurs from "../modelItem/Joueurs.svelte";
+  import { CaseGare } from "../../model/case/caseAchetable/caseGare";
 
     let conditionAcheter:boolean = true;
     let conditionTerminerTour:boolean = true;
@@ -26,8 +27,8 @@
         let caseCourante:Case = $partieStore.getTourCourant().getJoueurCourant().getPosition();
 
         if(
-            caseCourante instanceof CasePropriete && //si la case est une propriété
-            caseCourante.getEtat() instanceof EtatAchetable && //si la case est achetable
+            caseCourante instanceof CaseAchetable && //si la case est une propriété
+            caseCourante.getProprietaire() == null && //si la case est achetable
             $partieStore.getTourCourant().getJoueurCourant().getArgent() >= caseCourante.getPrix() //si le joueur a assez d'argent
             )
         {

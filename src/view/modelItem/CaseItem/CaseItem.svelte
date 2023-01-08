@@ -3,6 +3,7 @@
     import { EtatAchetable, EtatAchete } from "../../../model/etat/etatPropriete";
     import { CaseSelectedController } from "../../../controller/CaseSelectedController";
     import { joueurSurvole } from "../../../store/joueurSurvole";
+  import { CaseGare } from "../../../model/case/caseAchetable/CaseGare";
 
 
     export let c!: Case;
@@ -87,6 +88,13 @@
                     <span class="case__prix--unavailable">{c.getLoyer()}</span>
                 {/if}
             {/if}
+            {#if c instanceof CaseGare}
+                {#if c.getProprietaire() == null}
+                    <span class="case__prix--available">{c.getPrix()}</span>
+                {:else}
+                    <span class="case__prix--unavailable">{c.getLoyer()}</span>
+                {/if}
+            {/if}
         </div>
     </div>
 </template>
@@ -102,7 +110,7 @@
         gap: 5px;
 
         &--survole {
-            border: 2px solid red;
+            background-color: lightcoral;
         }
 
         &__quartier {
@@ -130,8 +138,6 @@
             }
         }
 
-        &__nom {
-        }
 
         &__joueurs {
             height: 50px;
