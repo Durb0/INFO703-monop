@@ -24,7 +24,11 @@ export class Tour{
     }
 
     public protocolDeplacementDefini(resultatDes:number[]){
-        this.deplacerJoueur(resultatDes);
+        if(this.peutLancer){
+            this.deplacerJoueur(resultatDes);
+            this.peutLancer = false;
+        }
+        
     }
 
     public deplacerJoueur(chiffresDes:number[]){
@@ -46,5 +50,9 @@ export class Tour{
      */
     public getJoueurCourant(){
         return this.joueurCourant;
+    }
+
+    public getPeutLancer(){
+        return this.peutLancer;
     }
 }

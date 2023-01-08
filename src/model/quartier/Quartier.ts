@@ -63,6 +63,10 @@ export class Quartier {
         return this.pannelPrixBas;
     }
 
+    public getLoyers(c:CasePropriete):number[]{
+        return this.getPannel(c).getLoyers();
+    }
+
 
 
     /**

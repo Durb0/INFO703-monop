@@ -7,6 +7,7 @@
     import { EtatAchetable } from "../../model/etat/etatPropriete";
     import type { Writable } from "svelte/store";
     import { getPartieStore } from "../../store/partieStore";
+    import CaseSelectedItem from "../modelItem/CaseItem/CaseSelectedItem.svelte";
 
     let conditionAcheter:boolean = true;
 
@@ -63,11 +64,33 @@
 
 <template>
     <div class="partie">
-        <Des tourController={tourController}/>
-        <button disabled={conditionAcheter} on:click={handlerActionAcheterPropriete()}>Acheter propriété</button>
-        <button on:click={handlerActionAcheterMaison()}>Acheter maison</button>
+        <div class="partie__blocks">
+            <PlateauItem plateau={partie.getPlateau()}>
+                <Des tourController={tourController}/>
+                <button disabled={conditionAcheter} on:click={handlerActionAcheterPropriete()}>Acheter propriété</button>
         <button on:click={handlerTerminerTour()}>Terminer le tour</button>
-        <PlateauItem plateau={partie.getPlateau()} />
+            </PlateauItem>
+            <CaseSelectedItem/>
+        </div>
+        
     </div>
 </template>
     
+<style lang="scss">
+    .partie {
+        display: block;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+
+        &__blocks {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+        }
+    }
+</style>

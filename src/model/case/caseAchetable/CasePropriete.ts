@@ -41,6 +41,10 @@ export class CasePropriete extends CaseAchetable {
         return this.etatPropriete.getLoyer();
     }  
 
+    public getLoyers():number[] {
+        return this.quartier.getLoyers(this);
+    }
+
     public getPrix(): number {
         return this.quartier.getPrix(this);
     }
@@ -64,6 +68,21 @@ export class CasePropriete extends CaseAchetable {
      */
     public construireMaison() {
         this.etatPropriete.construireMaison();
+        //if(this.nbMaison >= 5){
+        //    console.warn("Vous avez déjà construit 5 maisons");
+        //    return;
+        //}
+        //if(this.getProprietaire() == null){
+        //    console.warn("Vous n'avez pas de propriétaire");
+        //    return;
+        //}
+        //if(this.getProprietaire().getArgent() < this.quartier.getPrixMaison()){
+        //    console.warn("Vous n'avez pas assez d'argent pour construire une maison");
+        //    return;
+        //}
+//
+        //this.nbMaison++;
+        //this.getProprietaire().payer(this.quartier.getPrixMaison());
     }
 
     public acheterPropriete(joueur:Joueur): void {

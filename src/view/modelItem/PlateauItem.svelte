@@ -100,7 +100,12 @@
         {#each plateau.getCases() as c, i}
             <CaseItem c={c} area={getGridArea(i)} rot={getRotation(i)}/>
         {/each}
+        <div class="plateau__inside">
+            <slot></slot>
+        </div>
+        
     </div>
+    
 </template>
 
 
@@ -111,5 +116,13 @@
         display: grid;
         background-color: beige;
         border: 5px solid brown;
+
+        &__inside {
+            grid-area: 2 / 2 / -2 / -2;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            align-items: center;
+        }
     }
 </style>

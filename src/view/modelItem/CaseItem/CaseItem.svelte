@@ -1,10 +1,13 @@
 <script lang="ts">
     import {Case, CaseAchetable, CasePropriete} from "../../../model/case"
     import { EtatAchetable, EtatAchete } from "../../../model/etat/etatPropriete";
+    import { CaseSelectedController } from "../../../controller/CaseSelectedController";
 
     export let c!: Case;
     export let area!: string;
     export let rot!: string;
+
+    let caseCouranteController = new CaseSelectedController();
 
     /**
      * definit la taille de la police pour le nom selon sa taille, plus elle est grande plus la police est petite
@@ -33,13 +36,24 @@
         return taillePolice;
     }
 
+    function handleClickCase(){
+        caseCouranteController.setCaseSelected(c);
+    }
+
 </script>
 
 <template>
-    <div class="case" style="grid-area: {area}; transform: {rot}">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div class="case" style="grid-area: {area}; transform: {rot}" on:click={handleClickCase}>
         {#if c instanceof CasePropriete}
             <div class="case__quartier" style="background-color: {c.getQuartier().getCouleur()}">
-
+                {#if c.getNbMaisons() == 5}
+                    <div class="case__quartier__hotel"></div>
+                {:else}
+                    {#each Array(c.getNbMaisons()) as _,i}
+                        <div class="case__quartier__maison"></div>
+                    {/each}
+                {/if}
             </div>
         {/if}
         <span class="case__nom" style="font-size: {defineNameSize()}em">{c.getNom()}</span>
@@ -62,6 +76,7 @@
 
 <style lang="scss">
     .case {
+        cursor: pointer;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -70,9 +85,28 @@
         gap: 5px;
 
         &__quartier {
-            height: 10px;
+            height: 15px;
             width: -webkit-fill-available;
             border-bottom: 2px solid black;
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+
+            &__maison {
+                height: 10px;
+                width: 10px;
+                background-color: green;
+                border:1px solid black;
+            }
+
+            &__hotel {
+                height: 10px;
+                width: 10px;
+                background-color: red;
+                border:1px solid black;
+            }
         }
 
         &__nom {

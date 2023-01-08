@@ -1,18 +1,24 @@
 <script lang="ts">
-    import { PartieController } from "../../controller/partieController";
+    import { PartieController } from "../../controller/PartieController";
     import { Link } from "svelte-routing";
-    import type { Writable } from "svelte/store";
-    import type { Partie } from "../../model/Partie";
-    import { getPartieStore } from "../../store/partieStore";
+    import { partieStore } from "../../store/partieStore";
+    
 
     //je crée une instance du controller de la partie
     const partieController:PartieController = new PartieController();
 
-    //je crée un observable sur la partie
-    let partieStore:Writable<Partie> = getPartieStore();
+    let conditionAjouterJoueur = true;
+    let conditionCommencerPartie = true;
 
-    //A chaque fois que la partie change, je récupère la partie
-    $:partieStore = getPartieStore();
+    partieStore.subscribe((value) => {
+        conditionCommencerPartie = value.getJoueurs().length == 0;
+    });
+
+    function handleUpdateNom(event: Event) {
+        let input = event.target as HTMLInputElement;
+        nomChoisi = input.value;
+        conditionAjouterJoueur = nomChoisi.length === 0;
+    }
 
     //Les fonctions lorsque j'appuie sur les boutons
 
@@ -52,14 +58,14 @@
 
     <!-- le formulaire pour ajouter un joueur -->
     <div class="list-joueur_form">
-        <input bind:value={nomChoisi} type="text" name="nom" placeholder="Nom du joueur">
-        <button on:click={handleAjouterJoueur(nomChoisi)}>Ajouter</button>
+        <input bind:value={nomChoisi} type="text" name="nom" placeholder="Nom du joueur" on:change={handleUpdateNom}>
+        <button disabled={conditionAjouterJoueur} on:click={handleAjouterJoueur(nomChoisi)}>Ajouter</button>
     </div>
 
     <!-- le bouton pour commencer la partie -->
     <!-- le Link permet de changer le route -->
     <Link to="/partie">
-        <button on:click={handleCommencerPartie()}>
+        <button disabled={conditionCommencerPartie} on:click={handleCommencerPartie()}>
             Commencer la partie
         </button>
     </Link>

@@ -48,4 +48,8 @@ export class PannelPrix {
         }
     }
 
+    public getLoyers():number[]{
+        return [this.loyer, this.loyer1, this.loyer2, this.loyer3, this.loyer4, this.loyerHotel];
+    }
+
 }
