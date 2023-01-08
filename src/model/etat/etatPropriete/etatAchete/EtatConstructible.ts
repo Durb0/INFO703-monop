@@ -26,7 +26,7 @@ export class EtatConstructible extends EtatAchete {
         if(casePropriete.getNbMaisons() >= 5){
             console.warn("Le nombre de maison ne peut pas être augmenté.");
             return;
-        } else if(casePropriete.getProprietaire().peutPayer(casePropriete.getQuartier().getPrixMaison())){
+        } else if(!casePropriete.getProprietaire().peutPayer(casePropriete.getQuartier().getPrixMaison())){
             console.warn("Le propriétaire n'a pas assez d'argent pour obtenir une maison ici.");
             return;
         } if(casePropriete.getProprietaire().getNom() != acheteur.getNom()){
