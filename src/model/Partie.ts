@@ -1,19 +1,24 @@
 import { Joueur } from "./Joueur";
+import type { PartieBuilder } from "./partieBuilder/PartieBuilder";
+import { PartieBuilderClassique } from "./partieBuilder/PartieBuilderClassique";
 import { Plateau } from "./Plateau";
 import { Tour } from "./Tour";
 
 
 export class Partie {
+    
 
     private static instance:Partie;
     private joueurs:Joueur[];
     private plateau:Plateau;
     private tourCourant:Tour;
+    private builder:PartieBuilder;
 
 
     private constructor(){
         this.joueurs = [];
         this.plateau = new Plateau();
+        this.builder = new PartieBuilderClassique(this);
     }
 
     static getInstance():Partie{
@@ -32,6 +37,10 @@ export class Partie {
         this.joueurs = this.joueurs.filter(joueur => joueur.getNom() != nom);
     }
 
+    public setJoueurs(joueurs:Joueur[]){
+        this.joueurs = joueurs;
+    }
+
     public getJoueurs():Joueur[]{
         return this.joueurs;
     }
@@ -47,18 +56,21 @@ export class Partie {
         return this.tourCourant = tour;
     }
 
+    public setBuilder(builder:PartieBuilder):void{
+        this.builder = builder;
+    }
+
     public lancerPartie(){
-        this.tourCourant = new Tour(this.joueurs[0]);
-        this.joueurs.forEach(joueur=>{
-            joueur.setPosition(this.plateau.getCaseDepart());
-            this.plateau.getCaseDepart().ajouterJoueur(joueur);
-        })
-        console.log(this.tourCourant.getJoueurCourant());
+        this.builder.start();
     }
 
     public joueurSuivant(): Joueur {
         let joueurCourant = this.tourCourant.getJoueurCourant();
         let indexJoueurCourant = this.joueurs.findIndex(el=> el.getNom() == joueurCourant.getNom());
         return this.joueurs[(indexJoueurCourant+1)% this.joueurs.length];
+    }
+
+    newTour(joueur: Joueur) {
+        this.tourCourant = new Tour(joueur);
     }
 }

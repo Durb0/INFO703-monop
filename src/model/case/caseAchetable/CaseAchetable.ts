@@ -2,6 +2,7 @@ import { Case } from '../Case';
 import type { Joueur } from '../../Joueur';
 
 export abstract class CaseAchetable extends Case {
+    
     private prix:number;
     private proprietaire:Joueur;
 
@@ -26,5 +27,16 @@ export abstract class CaseAchetable extends Case {
 
     public setProprietaire(proprietaire:Joueur):void{
         this.proprietaire = proprietaire;
+    }
+    
+    public abstract getLoyer():number;
+
+    public actionDePosition(joueur: Joueur): void {
+        if(this.getProprietaire() == null){
+            return;
+        }
+        if(this.getProprietaire() != joueur){
+            joueur.payerA(this.getProprietaire(), this.getLoyer());
+        }
     }
 }

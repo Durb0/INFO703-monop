@@ -47,6 +47,7 @@ export class EtatConstructible extends EtatAchete {
         } else if(casePropriete.getProprietaire().getNom() != vendeur.getNom()){
             console.warn("Le joueur n'est pas propriétaire de cette case.")
         } else {
+            //Retire une maison
             casePropriete.retirerMaison();
             casePropriete.getProprietaire().recevoir(casePropriete.getQuartier().getPrixMaison() / 2);
             console.info(casePropriete.getProprietaire().getNom() + " a vendu une maison sur la case " + casePropriete.getNom() + ".");

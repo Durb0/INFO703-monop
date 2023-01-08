@@ -1,7 +1,8 @@
 <script lang="ts">
-    import { CaseAchetable, CasePropriete } from "../../../model/case";
+    import { CaseAchetable, CasePropriete, CaseGare } from "../../../model/case";
     import { caseSelected } from "../../../store/caseSelected";
     import { CaseSelectedController } from "../../../controller/CaseSelectedController";
+
 
     let caseSelectedController = new CaseSelectedController();
 
@@ -49,6 +50,7 @@
                         </div>
                     {/each}
                     <h3>Maisons</h3>
+                    <p>Prix maison : {$caseSelected.getQuartier().getPrixMaison()}</p>
                     <div class="case-selected__content__maisons">
                         <button on:click={handleVendreMaison}>-</button>
                         {#each Array($caseSelected.getNbMaisons()) as _,i}
@@ -58,6 +60,14 @@
                         <button on:click={handleConstruireMaison}>+</button>
                     </div>
                     
+                {/if}
+                {#if $caseSelected instanceof CaseGare}
+                    <h3>Pannel des loyers</h3>
+                    {#each $caseSelected.getGroupeGare().getLoyers() as loyer,i}
+                        <div class="case-selected__content__loyer">
+                            <span>Loyer {i+1} : {loyer}</span>
+                        </div>
+                    {/each}
                 {/if}
             </div>
         {/if}

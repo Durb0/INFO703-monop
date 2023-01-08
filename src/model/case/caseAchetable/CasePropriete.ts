@@ -1,7 +1,7 @@
 import { EtatAchetable, EtatConstructible } from '../../etat/etatPropriete';
 import type { EtatPropriete } from '../../etat/etatPropriete/EtatPropriete';
 import type { Joueur } from '../../Joueur';
-import type { Quartier } from '../../quartier/Quartier';
+import type { Quartier } from '../../groupe/Quartier';
 import { CaseAchetable } from './CaseAchetable';
 
 export class CasePropriete extends CaseAchetable {
@@ -13,7 +13,6 @@ export class CasePropriete extends CaseAchetable {
     constructor(nom:string, quartier:Quartier) {
         super(nom, 0);
         this.quartier = quartier;
-        super.setPrix(this.quartier.getPannel(this).getPrix());
         this.nbMaison = 0;
         this.etatPropriete = new EtatAchetable(this);
     }

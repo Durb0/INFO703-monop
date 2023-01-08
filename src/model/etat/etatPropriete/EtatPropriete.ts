@@ -21,7 +21,7 @@ export abstract class EtatPropriete {
     }
 
     public acheterPropriete(joueur:Joueur):void{
-        console.warn("Pas normal de passer ici...");
+        console.error("Pas normal de passer ici...");
     }
 
     /**

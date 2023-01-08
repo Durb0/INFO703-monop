@@ -2,6 +2,7 @@ import { Case, CaseAchetable, CasePropriete } from "./case";
 import { EtatConstructible } from "./etat/etatPropriete/etatAchete/EtatConstructible";
 
 export class Joueur{
+    
 
     private nom: string;
     private argent: number;
@@ -20,6 +21,10 @@ export class Joueur{
 
     public getArgent():number{
         return this.argent;
+    }
+
+    setArgent(argent: number) {
+        this.argent = argent;
     }
 
     /**
@@ -46,7 +51,7 @@ export class Joueur{
      * @param montant le montant que le joueur doit payer
      * @param joueur le joueur qui doit recevoir l'argent
      */
-    public payerA(montant:number, joueur:Joueur):void{
+    public payerA(joueur:Joueur, montant:number):void{
         this.payer(montant);
         joueur.recevoir(montant);
     }
@@ -54,6 +59,7 @@ export class Joueur{
 
     public ajouterPropriete(caseAchetable: CaseAchetable) {
         this.proprietes.push(caseAchetable);
+        caseAchetable.acheterPropriete(this);
     }
 
     /**
@@ -84,7 +90,6 @@ export class Joueur{
             } else if(this.peutPayer(this.position.getPrix())){
                 this.argent = this.argent - this.position.getPrix();
                 this.ajouterPropriete(this.position);
-                this.position.acheterPropriete(this);
                 console.log(this.position);
             } else {
                 console.error("error - acheterPropriete() - Le joueur n'a pas assez d'argent pour acheter cette case.")
@@ -113,6 +118,7 @@ export class Joueur{
      */
     public setPosition(position:Case){
         this.position = position;
+        position.ajouterJoueur(this);
     }
 
     /**

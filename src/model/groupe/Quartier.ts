@@ -1,33 +1,33 @@
 import { CasePropriete } from "../case";
 import type { Joueur } from "../Joueur";
+import { Groupe } from "./Groupe";
 import type { PannelPrix } from "./PannelPrix";
 
-export class Quartier {
+export class Quartier extends Groupe {
     
 
     private couleur:string;
-    private cases:CasePropriete[];
     private pannelPrixBas:PannelPrix;
     private pannelPrixHaut:PannelPrix;
     private prixMaison:number;
 
     constructor(couleur:string, pannelPrixBas:PannelPrix, pannelPrixHaut:PannelPrix, prixMaison:number, nomsCases:string[]) {
+        super(nomsCases);
         this.couleur = couleur;
         this.prixMaison = prixMaison;
         this.pannelPrixHaut = pannelPrixHaut;
         this.pannelPrixBas = pannelPrixBas;
-        this.cases = [];
-        nomsCases.forEach(nom => {
-            this.cases.push(new CasePropriete(nom, this));
-        });
+        for (let c of this.getCases() as CasePropriete[]){
+            c.setPrix(this.getPannel(c).getPrix());
+        };
+    }
+
+    public createCase(nom:string):CasePropriete{
+        return new CasePropriete(nom, this);
     }
 
     public getCouleur():string{
         return this.couleur;
-    }
-
-    public getCases():CasePropriete[]{
-        return this.cases;
     }
 
     public getPrix(c:CasePropriete):number{
@@ -42,11 +42,6 @@ export class Quartier {
         return this.getPannel(c).getLoyer(c.getNbMaisons());
     }
 
-
-    public setCases(cases:CasePropriete[]):void{
-        this.cases = cases;
-    }
-
     public setPannels(pannelPrixHaut:PannelPrix, pannelPrixBas:PannelPrix):void{
         this.pannelPrixHaut = pannelPrixHaut;
         this.pannelPrixBas = pannelPrixBas;
@@ -57,7 +52,7 @@ export class Quartier {
      * @param casePropriete la case dont on veut le pannel
      */
     public getPannel(casePropriete:CasePropriete):PannelPrix{
-        if(this.cases[this.cases.length - 1] == casePropriete){
+        if(this.getCase(this.getCases().length - 1) == casePropriete){
             return this.pannelPrixHaut;
         }
         return this.pannelPrixBas;
@@ -75,17 +70,17 @@ export class Quartier {
      */
     public estMonopole():boolean{
         let proprietaire:Joueur = null;
-        for(let i = 0; i < this.cases.length; i++){
+        for (let c of this.getCases() as CasePropriete[]){
             // si la case n'a pas de proprietaire
-            if(this.cases[i].getEtat().getCasePropriete().getProprietaire() == null){
+            if(c.getProprietaire() == null){
                 return false;
             }
             // si la case a un proprietaire
             else if(proprietaire == null){
-                proprietaire = this.cases[i].getProprietaire();
+                proprietaire = c.getProprietaire();
             }
             // si le proprietaire est different
-            else if(proprietaire != this.cases[i].getProprietaire()){
+            else if(proprietaire != c.getProprietaire()){
                 return false;
             }
         }
@@ -99,13 +94,13 @@ export class Quartier {
      * Change l'etat de toutes les cases du quartier en etatConstructibleSansMaison
      */
     public setMonopole():void{
-        this.cases.forEach(c => {
+        this.getCases().forEach((c:CasePropriete) => {
             c.proprieteConstructible();
         });
     }
 
     public addCase(c:CasePropriete):void{
-        this.cases.push(c);
+        this.getCases().push(c);
     }
 
 }
