@@ -3,10 +3,16 @@
     import { Link } from "svelte-routing";
     import type { Writable } from "svelte/store";
     import type { Partie } from "../../model/Partie";
-    import { partieStore } from "../../store/partieStore";
+    import { getPartieStore } from "../../store/partieStore";
 
     //je crée une instance du controller de la partie
     const partieController:PartieController = new PartieController();
+
+    //je crée un observable sur la partie
+    let partieStore:Writable<Partie> = getPartieStore();
+
+    //A chaque fois que la partie change, je récupère la partie
+    $:partieStore = getPartieStore();
 
     //Les fonctions lorsque j'appuie sur les boutons
 

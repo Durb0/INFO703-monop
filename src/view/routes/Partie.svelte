@@ -3,14 +3,21 @@
     import type { Partie } from "../../model/Partie";
     import { TourController } from "../../controller/TourController";
     import Des from "../core/Des.svelte";
-    import { partieStore } from "../../store/partieStore";
     import { Case, CasePropriete } from "../../model/case";
     import { EtatAchetable } from "../../model/etat/etatPropriete";
+    import type { Writable } from "svelte/store";
+    import { getPartieStore } from "../../store/partieStore";
 
     let conditionAcheter:boolean = true;
 
     //je crée une instance du controller du tour
     const tourController:TourController = new TourController();
+
+    //je crée un observable sur la partie
+    let partieStore:Writable<Partie> = getPartieStore();
+
+    //A chaque fois que la partie change, je récupère la partie
+    partieStore = getPartieStore(); 
 
     let partie:Partie;
 

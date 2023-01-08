@@ -26,7 +26,7 @@ export class CasePropriete extends CaseAchetable {
         return this.nbMaison;
     }
     public ajouterMaison():number{
-        return this.nbMaison+1;
+        return this.nbMaison+=1;
     }
 
     public getEtat():EtatPropriete{
@@ -64,12 +64,9 @@ export class CasePropriete extends CaseAchetable {
      */
     public construireMaison() {
         this.etatPropriete.construireMaison();
-        console.log(this);
     }
 
     public acheterPropriete(joueur:Joueur): void {
-        console.log("je passe ici");
-        console.log(joueur);
         this.etatPropriete.acheterPropriete(joueur);    
     }
 

@@ -1,7 +1,7 @@
 import type { Writable } from "svelte/store";
 import type { Partie } from "../model/Partie";
 import { Tour } from "../model/Tour";
-import { partieStore } from "../store/partieStore";
+import { getPartieStore } from "../store/partieStore";
 
 export class TourController{
     private partieStore:Writable<Partie>;
@@ -14,7 +14,7 @@ export class TourController{
      * Effectue un déplacement via des dés alétoire au joueur.
      */
     public protocolDeplacementSimple():void{
-        partieStore.update(partie => {
+        this.partieStore.update(partie => {
             partie.getTourCourant().protocolDeplacementSimple();
             return partie;
         });
@@ -25,7 +25,7 @@ export class TourController{
      * @param resultatDes 
      */
     protocolDeplacementDefini(resultatDes:number[]):void{
-        partieStore.update(partie => {
+        this.partieStore.update(partie => {
             partie.getTourCourant().protocolDeplacementDefini(resultatDes);
             return partie;
         });
@@ -35,7 +35,7 @@ export class TourController{
      * Permet de passer au prochain tour de jeu.
      */
     protocolTerminerTour() {
-        partieStore.update(partie => {
+        this.partieStore.update(partie => {
             partie.setTourCourant(new Tour(partie.joueurSuivant()));
             return partie;
         });
@@ -45,7 +45,7 @@ export class TourController{
      * Permet l'achat par le joueur courant de la propriété à la position du joueur courant.
      */
     protocolAcheterPropriete() {
-        partieStore.update(partie => {
+        this.partieStore.update(partie => {
             partie.getTourCourant().getJoueurCourant().acheterPropriete();
             return partie;
         });
@@ -57,6 +57,7 @@ export class TourController{
     protocolAcheterMaison() {
         this.partieStore.update(partie => {
             partie.getTourCourant().getJoueurCourant().acheterMaison(partie.getTourCourant().getJoueurCourant().getPosition());
+            console.log(partie);
             return partie;
         });
     }

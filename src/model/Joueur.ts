@@ -104,7 +104,7 @@ export class Joueur{
     }
 
 
-    //TODO: La case doit devenir de typer CasePropriété quand on aura finit les tests
+    //TODO: La case doit devenir de type CasePropriété quand on aura finit les tests
     acheterMaison(casePropriete:Case) {
         if(casePropriete instanceof CasePropriete){
             casePropriete.construireMaison();
