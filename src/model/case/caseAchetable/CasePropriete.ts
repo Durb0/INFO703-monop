@@ -28,6 +28,9 @@ export class CasePropriete extends CaseAchetable {
     public ajouterMaison():number{
         return this.nbMaison+=1;
     }
+    public retirerMaison():number{
+        return this.nbMaison-=1;
+    }
 
     public getEtat():EtatPropriete{
         return this.etatPropriete;
@@ -54,11 +57,8 @@ export class CasePropriete extends CaseAchetable {
      * 
      * Il gagne la moitié du prix de la maison
      */
-    public vendreMaison() {
-        if(this.nbMaison > 0){
-            this.nbMaison--;
-            this.getProprietaire().recevoir(this.quartier.getPrixMaison() / 2);
-        }
+    public vendreMaison(vendeur:Joueur) {
+        this.getEtat().vendreMaison(vendeur);
     }
 
     /**
@@ -66,23 +66,8 @@ export class CasePropriete extends CaseAchetable {
      * 
      * Il paye le prix de la maison
      */
-    public construireMaison() {
-        this.etatPropriete.construireMaison();
-        //if(this.nbMaison >= 5){
-        //    console.warn("Vous avez déjà construit 5 maisons");
-        //    return;
-        //}
-        //if(this.getProprietaire() == null){
-        //    console.warn("Vous n'avez pas de propriétaire");
-        //    return;
-        //}
-        //if(this.getProprietaire().getArgent() < this.quartier.getPrixMaison()){
-        //    console.warn("Vous n'avez pas assez d'argent pour construire une maison");
-        //    return;
-        //}
-//
-        //this.nbMaison++;
-        //this.getProprietaire().payer(this.quartier.getPrixMaison());
+    public construireMaison(acheteur:Joueur) {
+        this.etatPropriete.construireMaison(acheteur);
     }
 
     public acheterPropriete(joueur:Joueur): void {

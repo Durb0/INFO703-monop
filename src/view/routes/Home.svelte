@@ -21,7 +21,6 @@
     }
 
     //Les fonctions lorsque j'appuie sur les boutons
-
     const handleAjouterJoueur = (nom:string) => {
         return(event: Event) => {
             //appelle la fonction du controller

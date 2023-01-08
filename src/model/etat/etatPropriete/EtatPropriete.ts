@@ -24,7 +24,28 @@ export abstract class EtatPropriete {
         console.warn("Pas normal de passer ici...");
     }
 
-    public construireMaison() {
-        console.warn("Il est surment pas possible de construire une maison ici <3");
+    /**
+     * Construit la maison sur la propriété sélectionné en respectant les conditions.
+     * @param acheteur Joueur qui effectue l'action de construction
+     * @returns void
+     */
+    public construireMaison(acheteur:Joueur) {
+        if(this.getCasePropriete().getProprietaire() == null){
+            console.warn("Ce terrain n'a pas de propriétaire. Il n'est pas possible de construire une maison.");
+        } else {
+            console.warn("Vous n'avez pas le monopole sur le quartier pour pouvoir construire une maison.");
+        }
+    }
+
+    /**
+     * Vend la maison de la propriété séléctionné en respectant certaines conditions.
+     * @param vendeur Joeuur qui effectue l'action de vente
+     */
+    vendreMaison(vendeur:Joueur){
+        if(this.getCasePropriete().getProprietaire() == null){
+            console.warn("Ce terrain n'a pas de propriétaire. Il n'est pas possibel de vendre une maison.");
+        } else {
+            console.warn("Vous n'avez pas le monopole. Aucune maison n'a pu être construite donc aucune maison peut être construite.");
+        }
     }
 }

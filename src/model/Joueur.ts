@@ -103,16 +103,6 @@ export class Joueur{
         return this.argent - prix >= 0;
     }
 
-
-    //TODO: La case doit devenir de type CasePropriété quand on aura finit les tests
-    acheterMaison(casePropriete:Case) {
-        if(casePropriete instanceof CasePropriete){
-            casePropriete.construireMaison();
-        } else {
-            console.error("error - acheterMaison - Le type de case ne permet pas de construire une maison.")
-        }
-    } 
-
     // ===============
     // GETTER & SETTER
     // ===============

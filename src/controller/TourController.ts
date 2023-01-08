@@ -44,15 +44,4 @@ export class TourController{
         });
     }
 
-    /**
-     * Permet d'acheter une maison sur le terrain courant.
-     */
-    protocolAcheterMaison() {
-        partieStore.update(partie => {
-            partie.getTourCourant().getJoueurCourant().acheterMaison(partie.getTourCourant().getJoueurCourant().getPosition());
-            console.log(partie);
-            return partie;
-        });
-    }
-
 }
