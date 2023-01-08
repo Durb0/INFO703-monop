@@ -1,3 +1,5 @@
+import type { PartieBuilder } from "../model/partieBuilder/PartieBuilder";
+import { PartieBuilder1 } from "../model/partieBuilder/PartieBuilder1";
 import { partieStore } from "../store/partieStore";
 
 export class PartieController{
@@ -18,6 +20,20 @@ export class PartieController{
 
     lancerPartie():void{
         partieStore.update(partie => {
+            partie.lancerPartie();
+            return partie;
+        });
+    }
+
+    startScenario(num:number):void{
+        partieStore.update(partie => {
+            switch(num){
+                case 1:
+                    partie.setBuilder(new PartieBuilder1(partie));
+                    break;
+                default:
+                    break;
+            };
             partie.lancerPartie();
             return partie;
         });

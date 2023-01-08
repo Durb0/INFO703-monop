@@ -43,6 +43,12 @@
         }
     }
 
+    function startscenario(num:number) {
+        return(event: Event) => {
+            partieController.startScenario(num);
+        }
+    }
+
     let nomChoisi:string = "";
 
 </script>
@@ -67,6 +73,14 @@
     <Link to="/partie">
         <button disabled={conditionCommencerPartie} on:click={handleCommencerPartie()}>
             Commencer la partie
+        </button>
+
+        <button on:click={startscenario(1)}>
+            Scenario 1
+        </button>
+
+        <button on:click={startscenario(2)}>
+            Scenario 2
         </button>
     </Link>
 </div>

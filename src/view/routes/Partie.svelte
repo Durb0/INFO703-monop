@@ -8,7 +8,7 @@
     import CaseSelectedItem from "../modelItem/CaseItem/CaseSelectedItem.svelte";
     import { partieStore } from "../../store/partieStore";
     import Joueurs from "../modelItem/Joueurs.svelte";
-  import { CaseGare } from "../../model/case/caseAchetable/caseGare";
+  import { CaseGare } from "../../model/case/caseAchetable/CaseGare";
 
     let conditionAcheter:boolean = true;
     let conditionTerminerTour:boolean = true;
