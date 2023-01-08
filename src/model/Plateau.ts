@@ -2,6 +2,7 @@ import {Case, CaseDepart, CasePropriete, CaseTaxe} from "./case";
 import { Quartier } from "./groupe/Quartier";
 import { PannelPrix } from "./groupe/PannelPrix";
 import { GroupeGare } from "./groupe/GroupeGare";
+import { GroupeService } from "./groupe/GroupeService";
 
 
 export class Plateau{
@@ -54,6 +55,10 @@ export class Plateau{
             ["Gare Montparnasse", "Gare de Lyon", "Gare Saint-Lazare", "Gare du Nord"]
         );
 
+        let groupeService = new GroupeService(
+            ["Compagnie de distribution d'électricité", "Compagnie de distribution d'eau"]
+        )
+
         // La case de départ
         this.caseDepart = new CaseDepart(200);
         this.cases.push(this.caseDepart);
@@ -99,7 +104,11 @@ export class Plateau{
             100,
             [ "Boulevard de la villette", "Avenue de Neuilly", "Rue de Paradis" ]
             );
-        this.cases.push(...quartierRose.getCases());
+        this.cases.push(quartierRose.getCase(0));
+        this.cases.push(groupeService.getCase(0));
+        this.cases.push(quartierRose.getCase(1));
+        this.cases.push(quartierRose.getCase(2));
+
 
 
         this.cases.push(groupeGare.getCase(1));
