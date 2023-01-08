@@ -19,31 +19,37 @@
 
 </script>
 
-<div class="component-des">
+<div class="des">
     <button on:click={handleLancer2DesSimple()}>Lancer les dés</button>
-
-    <div class="des_form">
-        <div class="form-input">
+    <p>ou</p>
+    <div class="des__form">
+        <div class="des__form__inputs">
             <input bind:value={resultatDes[0]} type="number" name="nom" placeholder="Résultat dé 1">
             <input bind:value={resultatDes[1]} type="number" name="nom" placeholder="Résultat dé 2">
         </div>
-        <button on:click={handleLancer2DesDefini(resultatDes)}>Confirmer les dés</button>
+        <button on:click={handleLancer2DesDefini(resultatDes)}>Confirmer</button>
     </div>
 
 </div>
 
 <style lang="scss">
-    .component-des{
-        display: flex;
-        flex-direction: row;
+    .des{
+        display: grid;
+        grid-template-columns: 60px 10px 60px;
+        grid-gap: 10px;
+
+        &__form{
+            display: grid;
+            grid-template-rows: 50px 50px;
+
+            &__inputs{
+                display: grid;
+                grid-template-columns: 50px 50px;
+                grid-gap: 10px;
+            }
+        }
     }
-    .des_form{
-        display: flex;
-        flex-direction: row;
-    }
-    .form-input{
-        display: flex;
-        flex-direction: column;
-    }
+    
+    
 </style>
 

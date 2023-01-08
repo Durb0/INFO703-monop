@@ -2,6 +2,9 @@ import type { CasePropriete } from "../../case";
 import type { Joueur } from "../../Joueur";
 
 export abstract class EtatPropriete {
+    getLoyer(): number {
+        return this.getCasePropriete().getQuartier().getLoyer(this.getCasePropriete());
+    }
 
     private casePropriete:CasePropriete;
 

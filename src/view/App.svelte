@@ -2,14 +2,12 @@
 	import { Router, Link, Route } from 'svelte-routing';
 	import Home from './routes/Home.svelte';
 	import Partie from './routes/Partie.svelte';
-	import Header from './core/Header.svelte';
 
 
 	export const url:string="";
 </script>
 
 <main>
-	<Header/>
 	<Router url="{url}">
 		<Route path="partie" component={Partie} />
 		<Route path="/" component={Home} />

@@ -64,6 +64,7 @@ export class Joueur{
         for(let i:number = 0; i < totalDeplacement; i++){
             this.deplacer1Case();
         }
+        this.position.actionDePosition(this);
     }
 
     /**
@@ -73,6 +74,7 @@ export class Joueur{
         this.position.retirerJoueur(this);
         this.position = this.position.getCaseSuivante();
         this.position.ajouterJoueur(this);
+        this.position.actionDePassage(this);
     }
 
     acheterPropriete() {

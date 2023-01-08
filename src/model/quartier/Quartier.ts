@@ -3,6 +3,7 @@ import type { Joueur } from "../Joueur";
 import type { PannelPrix } from "./PannelPrix";
 
 export class Quartier {
+    
 
     private couleur:string;
     private cases:CasePropriete[];
@@ -36,6 +37,11 @@ export class Quartier {
     public getPrixMaison():number{
         return this.prixMaison;
     }
+
+    getLoyer(c: CasePropriete): number {
+        return this.getPannel(c).getLoyer(c.getNbMaisons());
+    }
+
 
     public setCases(cases:CasePropriete[]):void{
         this.cases = cases;

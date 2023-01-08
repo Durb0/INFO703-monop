@@ -73,7 +73,7 @@
 
         if(index < nbCaseCote){
             //haut
-            return "rotate(180deg)";
+            return "rotate(0deg)";
         }
         else if(index < nbCaseCote * 2){
             //droite

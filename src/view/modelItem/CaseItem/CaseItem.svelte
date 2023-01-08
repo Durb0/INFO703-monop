@@ -53,7 +53,7 @@
                 {#if c.getEtat() instanceof EtatAchetable}
                     <span class="case__prix--available">{c.getPrix()}</span>
                 {:else if c.getEtat() instanceof EtatAchete}
-                    <span class="case__prix--unavailable">{c.getPrix()}</span>
+                    <span class="case__prix--unavailable">{c.getLoyer()}</span>
                 {/if}
             {/if}
         </div>

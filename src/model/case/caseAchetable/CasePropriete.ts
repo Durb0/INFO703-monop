@@ -38,7 +38,7 @@ export class CasePropriete extends CaseAchetable {
     }
 
     public getLoyer():number {
-        return this.quartier.getPannel(this).getLoyer(this.nbMaison);
+        return this.etatPropriete.getLoyer();
     }  
 
     public getPrix(): number {
