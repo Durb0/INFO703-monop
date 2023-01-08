@@ -58,7 +58,7 @@
 
     <!-- le formulaire pour ajouter un joueur -->
     <div class="list-joueur_form">
-        <input bind:value={nomChoisi} type="text" name="nom" placeholder="Nom du joueur" on:change={handleUpdateNom}>
+        <input bind:value={nomChoisi} type="text" name="nom" placeholder="Nom du joueur" on:input={handleUpdateNom}>
         <button disabled={conditionAjouterJoueur} on:click={handleAjouterJoueur(nomChoisi)}>Ajouter</button>
     </div>
 
