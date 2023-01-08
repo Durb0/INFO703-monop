@@ -52,9 +52,6 @@ export class Partie {
     public getTourCourant():Tour{
         return this.tourCourant;
     }
-    public setTourCourant(tour:Tour):Tour{
-        return this.tourCourant = tour;
-    }
 
     public setBuilder(builder:PartieBuilder):void{
         this.builder = builder;
@@ -70,7 +67,11 @@ export class Partie {
         return this.joueurs[(indexJoueurCourant+1)% this.joueurs.length];
     }
 
-    newTour(joueur: Joueur) {
+    public nouveauTour() {
+        this.tourCourant = new Tour(this.joueurSuivant());
+    }
+
+    public setTour(joueur:Joueur){
         this.tourCourant = new Tour(joueur);
     }
 }

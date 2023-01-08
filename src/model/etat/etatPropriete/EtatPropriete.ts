@@ -30,11 +30,7 @@ export abstract class EtatPropriete {
      * @returns void
      */
     public construireMaison(acheteur:Joueur) {
-        if(this.getCasePropriete().getProprietaire() == null){
-            console.warn("Ce terrain n'a pas de propriétaire. Il n'est pas possible de construire une maison.");
-        } else {
-            console.warn("Vous n'avez pas le monopole sur le quartier pour pouvoir construire une maison.");
-        }
+        console.error("Vous n'etes pas censé avoir cet etat")
     }
 
     /**

@@ -29,7 +29,7 @@ export class TourController{
      */
     protocolTerminerTour() {
         partieStore.update(partie => {
-            partie.setTourCourant(new Tour(partie.joueurSuivant()));
+            partie.nouveauTour();
             return partie;
         });
     }

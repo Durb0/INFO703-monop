@@ -12,4 +12,8 @@ export class EtatAchetable extends EtatPropriete {
             this.getCasePropriete().getQuartier().setMonopole();
         }
     }
+
+    public construireMaison(acheteur: Joueur): void {
+        console.warn("Il vous faut acheter cette propriété et avoir le monopole pour construire une maison");
+    }
 }

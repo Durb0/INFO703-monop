@@ -14,7 +14,7 @@ export class PartieBuilder2 extends PartieBuilder {
         
         let luc = partie.getJoueurs()[1];
         //C'est au tour de Luc
-        partie.newTour(luc);
+        partie.setTour(luc);
 
         //Luc est sur l'avenue des Champs-Élysées
         let champs:CasePropriete = partie.getPlateau().getCaseParNom("Avenue des Champs-Élysées") as CasePropriete;
