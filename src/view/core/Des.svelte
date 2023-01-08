@@ -1,7 +1,15 @@
 <script lang="ts">
     import type { TourController } from "../../controller/TourController";
-
+    import { partieStore } from "../../store/partieStore";
     export let tourController:TourController;
+
+    let conditionLanceDes:boolean = false;
+
+    partieStore.subscribe((value) => {
+        conditionLanceDes = !value.getTourCourant().getPeutLancer();
+    });
+
+
 
     const handleLancer2DesSimple = () => {
         return(event: Event) => {
@@ -20,14 +28,14 @@
 </script>
 
 <div class="des">
-    <button on:click={handleLancer2DesSimple()}>Lancer les dés</button>
+    <button disabled={conditionLanceDes} on:click={handleLancer2DesSimple()}>Lancer les dés</button>
     <p>ou</p>
     <div class="des__form">
         <div class="des__form__inputs">
             <input bind:value={resultatDes[0]} type="number" name="nom" placeholder="Résultat dé 1">
             <input bind:value={resultatDes[1]} type="number" name="nom" placeholder="Résultat dé 2">
         </div>
-        <button on:click={handleLancer2DesDefini(resultatDes)}>Confirmer</button>
+        <button disabled={conditionLanceDes} on:click={handleLancer2DesDefini(resultatDes)}>Confirmer</button>
     </div>
 
 </div>

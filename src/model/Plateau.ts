@@ -9,11 +9,20 @@ export class Plateau{
     private caseDepart: CaseDepart;
 
     constructor(){
+        this.cases = [];
         this.createPlateau();
     }
 
     public getCases():Case[]{
         return this.cases;
+    }
+
+    public updateCase(cas:Case){
+        this.cases.forEach(c => {
+            if(c.getNom() == cas.getNom()){
+                c = cas;
+            }
+        });
     }
 
     public getCaseDepart():CaseDepart{

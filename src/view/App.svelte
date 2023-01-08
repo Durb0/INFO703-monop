@@ -9,8 +9,8 @@
 
 <main>
 	<Router url="{url}">
-		<Route path="partie" component={Partie} />
-		<Route path="/" component={Home} />
+		<Route path="partie"><Partie/></Route>
+		<Route path="/"><Home/></Route>
 	</Router>
 </main>
 
