@@ -4,7 +4,6 @@ import { Tour } from "../model/Tour";
 import { getPartieStore } from "../store/partieStore";
 
 export class TourController{
-
     private partieStore:Writable<Partie>;
 
     constructor(){
@@ -51,4 +50,15 @@ export class TourController{
             return partie;
         });
     }
+
+    /**
+     * Permet d'acheter une maison sur le terrain courant.
+     */
+    protocolAcheterMaison() {
+        this.partieStore.update(partie => {
+            partie.getTourCourant().getJoueurCourant().acheterMaison(partie.getTourCourant().getJoueurCourant().getPosition());
+            return partie;
+        });
+    }
+
 }

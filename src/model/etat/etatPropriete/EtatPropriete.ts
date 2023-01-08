@@ -20,4 +20,8 @@ export abstract class EtatPropriete {
     public acheterPropriete(joueur:Joueur):void{
         console.warn("Pas normal de passer ici...");
     }
+
+    public construireMaison() {
+        console.warn("Il est surment pas possible de construire une maison ici <3");
+    }
 }

@@ -19,24 +19,30 @@
     //A chaque fois que la partie change, je récupère la partie
     $:partie = getPartieStore();
 
-    const handlerTerminerTour = () => {
+    function handlerTerminerTour(){
         return(event: Event) => {
             tourController.protocolTerminerTour();
         }
     }
 
-    const handlerActionAcheterPropriete = () => {
+    function handlerActionAcheterPropriete() {
         return(event: Event) => {
             tourController.protocolAcheterPropriete();
         }
     }
 
+    function handlerActionAcheterMaison() {
+        return(event: Event) => {
+            tourController.protocolAcheterMaison();
+        }
+    }
 </script>
 
 <template>
     <div class="partie">
         <Des tourController={tourController}/>
         <button on:click={handlerActionAcheterPropriete()}>Acheter propriété</button>
+        <button on:click={handlerActionAcheterMaison()}>Acheter maison</button>
         <button on:click={handlerTerminerTour()}>Terminer le tour</button>
         <PlateauItem plateau={$partie.getPlateau()} />
     </div>

@@ -1,6 +1,7 @@
 import { Case, CaseAchetable, CasePropriete } from "./case";
+import { EtatConstructible } from "./etat/etatPropriete/etatAchete/EtatConstructible";
 
-export class Joueur{ 
+export class Joueur{
 
     private nom: string;
     private argent: number;
@@ -100,6 +101,16 @@ export class Joueur{
         return this.argent - prix >= 0;
     }
 
+
+    //TODO: La case doit devenir de typer CasePropriété quand on aura finit les tests
+    acheterMaison(casePropriete:Case) {
+        if(casePropriete instanceof CasePropriete){
+            casePropriete.construireMaison();
+        } else {
+            console.error("error - acheterMaison - Le type de case ne permet pas de construire une maison.")
+        }
+    } 
+
     // ===============
     // GETTER & SETTER
     // ===============
@@ -110,5 +121,13 @@ export class Joueur{
      */
     public setPosition(position:Case){
         this.position = position;
+    }
+
+    /**
+     * Getter de la position du joueur
+     * @param position 
+     */
+    public getPosition(){
+        return this.position;
     }
 }

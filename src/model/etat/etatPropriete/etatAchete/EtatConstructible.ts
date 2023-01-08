@@ -1,3 +1,4 @@
+import type { CasePropriete } from "../../../case";
 import { EtatAchete } from "./EtatAchete";
 
 export class EtatConstructible extends EtatAchete {
@@ -18,4 +19,18 @@ export class EtatConstructible extends EtatAchete {
             return loyer;
         }
     }
+
+    /**
+     * Si c'est possible, construit une maison sur la propriété
+     */
+    public construireMaison() {
+        let casePropriete:CasePropriete = this.getCasePropriete();
+        if(casePropriete.getNbMaisons() < 5){
+            casePropriete.ajouterMaison();
+            casePropriete.getProprietaire().payer(casePropriete.getQuartier().getPrixMaison());
+        } else {
+            console.error("error - le nombre de maison ne peut pas être augmenté.")
+        }
+    }
+
 } 
