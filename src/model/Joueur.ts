@@ -89,7 +89,7 @@ export class Joueur{
             if(this.position.getProprietaire() != undefined){
                 console.error("error - acheterPropriete - La case a déjà un propriétaire.");
             } else if(this.peutPayer(this.position.getPrix())){
-                this.argent = this.argent - this.position.getPrix();
+                this.payer(this.position.getPrix());
                 this.ajouterPropriete(this.position);
                 console.info(this.nom + " a acheté " + this.position.getNom());
             } else {
