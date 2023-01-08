@@ -92,13 +92,4 @@ export class CasePropriete extends CaseAchetable {
     public proprieteConstructible() {
         this.etatPropriete.changeEtat(new EtatConstructible(this));
     }
-
-    public actionDePosition(joueur: Joueur): void {
-        if(this.getProprietaire() == null){
-            return;
-        }
-        if(this.getProprietaire() != joueur){
-            joueur.payerA(this.getProprietaire(), this.getLoyer());
-        }
-    }
 }
