@@ -41,6 +41,11 @@ export class Des {
         return res;
     }
 
+    public lancerFauxDes(resultat:number[]){
+        this.dernierResultat = resultat.reduce((a,b) => a+b);
+        return resultat;
+    }
+
     /**
      * Renvoie un nombre aléatoire entre min (inclus) et max (inclus).
      * @param min 

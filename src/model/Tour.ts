@@ -25,6 +25,7 @@ export class Tour{
 
     public protocolDeplacementDefini(resultatDes:number[]){
         if(this.peutLancer){
+            this.des.lancerFauxDes(resultatDes);
             this.deplacerJoueur(resultatDes);
             this.peutLancer = false;
         }

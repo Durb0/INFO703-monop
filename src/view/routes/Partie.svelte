@@ -1,6 +1,5 @@
 <script lang="ts">
     import PlateauItem from "../modelItem/PlateauItem.svelte";
-    import type { Partie } from "../../model/Partie";
     import { TourController } from "../../controller/TourController";
     import Des from "../core/Des.svelte";
     import { Case, CaseAchetable, CasePropriete } from "../../model/case";
@@ -55,12 +54,6 @@
     function handlerActionAcheterPropriete() {
         return(event: Event) => {
             tourController.protocolAcheterPropriete();
-        }
-    }
-
-    function handlerActionAcheterMaison() {
-        return(event: Event) => {
-            tourController.protocolAcheterMaison();
         }
     }
 </script>

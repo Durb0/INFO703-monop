@@ -25,7 +25,7 @@ export class Case {
      * @param joueur le joueur qui est sur la case
      */
     public actionDePosition(joueur:Joueur):void{
-        console.log(joueur + " est sur la case " + this.nom);
+        console.log(joueur.getNom() + " est sur la case " + this.nom);
     }
 
     /**
@@ -34,7 +34,7 @@ export class Case {
      * @param joueur le joueur qui passe sur la case
      */
     public actionDePassage(joueur:Joueur):void{
-        console.log(joueur + " passe sur la case " + this.nom);
+        console.log(joueur.getNom() + " passe sur la case " + this.nom);
     }
 
     public getCaseSuivante():Case{

@@ -4,6 +4,7 @@
     import { CaseSelectedController } from "../../../controller/CaseSelectedController";
     import { joueurSurvole } from "../../../store/joueurSurvole";
     import { CaseGare } from "../../../model/case/caseAchetable/CaseGare";
+    import { CaseService } from "../../../model/case/caseAchetable/CaseService";
 
 
     export let c!: Case;
@@ -93,6 +94,13 @@
                     <span class="case__prix--available">{c.getPrix()}</span>
                 {:else}
                     <span class="case__prix--unavailable">{c.getLoyer()}</span>
+                {/if}
+            {/if}
+            {#if c instanceof CaseService}
+                {#if c.getProprietaire() == null}
+                    <span class="case__prix--available">{c.getPrix()}</span>
+                {:else}
+                    <span class="case__prix--unavailable">Des * {c.getGroupeService().isMonopole(c.getProprietaire())? 10: 4}</span>
                 {/if}
             {/if}
         </div>

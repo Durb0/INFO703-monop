@@ -11,21 +11,27 @@ export class CaseSelectedController {
     }
 
     vendreMaison() {
-        caseSelected.update(c => {
-            if (c instanceof CasePropriete) {
-                c.vendreMaison();
-            }
-            this.updateCaseOfPartie(c);
-            return c;
+        partieStore.update(partie=>{
+            caseSelected.update(c => {
+                if (c instanceof CasePropriete) {
+                    c.vendreMaison(partie.getTourCourant().getJoueurCourant());
+                }
+                this.updateCaseOfPartie(c);
+                return c;
+            });
+            return partie;
         });
     }
     construireMaison() {
-        caseSelected.update(c => {
-            if (c instanceof CasePropriete) {
-                c.construireMaison();
-            }
-            this.updateCaseOfPartie(c);
-            return c;
+        partieStore.update(partie => {
+            caseSelected.update(c => {
+                if (c instanceof CasePropriete) {
+                    c.construireMaison(partie.getTourCourant().getJoueurCourant());
+                }
+                this.updateCaseOfPartie(c);
+                return c;
+            });
+            return partie;
         });
     }
 

@@ -1,4 +1,5 @@
 import type { CasePropriete } from "../../../case";
+import type { Joueur } from "../../../Joueur";
 import { EtatAchete } from "./EtatAchete";
 
 export class EtatConstructible extends EtatAchete {
@@ -14,26 +15,42 @@ export class EtatConstructible extends EtatAchete {
             return loyer * 2;
         }
         // si il y a des maisons
-        else{
+        else {
             return loyer;
         }
     }
 
-    /**
-     * Si c'est possible, construit une maison sur la propriété
-     */
-    public construireMaison() {
+    
+    public construireMaison(acheteur:Joueur) {
         let casePropriete:CasePropriete = this.getCasePropriete();
-        if(casePropriete.getProprietaire().getArgent() < casePropriete.getQuartier().getPrixMaison()){
-            console.warn("error - le joueur n'a pas assez d'argent pour construire une maison.");
+        if(casePropriete.getNbMaisons() >= 5){
+            console.warn("Le nombre de maison ne peut pas être augmenté.");
             return;
-        }
-        if(casePropriete.getNbMaisons() < 5){
+        } else if(!casePropriete.getProprietaire().peutPayer(casePropriete.getQuartier().getPrixMaison())){
+            console.warn("Le propriétaire n'a pas assez d'argent pour obtenir une maison ici.");
+            return;
+        } if(casePropriete.getProprietaire().getNom() != acheteur.getNom()){
+            console.warn("Le joueur n'est pas propriétaire de cette case.")
+        } else {
+            //Construit la maison
             casePropriete.ajouterMaison();
             casePropriete.getProprietaire().payer(casePropriete.getQuartier().getPrixMaison());
-            console.log(casePropriete.getProprietaire());
+            console.info(casePropriete.getProprietaire().getNom() + " a acheté une maison sur la case " + casePropriete.getNom() + ".");
+        }
+    }
+
+    
+    vendreMaison(vendeur:Joueur){
+        let casePropriete:CasePropriete = this.getCasePropriete();
+        if(casePropriete.getNbMaisons() <= 0){
+            console.warn("Le nombre de maison ne peut pas être diminué.");
+        } else if(casePropriete.getProprietaire().getNom() != vendeur.getNom()){
+            console.warn("Le joueur n'est pas propriétaire de cette case.")
         } else {
-            console.warn("error - le nombre de maison ne peut pas être augmenté.")
+            //Retire une maison
+            casePropriete.retirerMaison();
+            casePropriete.getProprietaire().recevoir(casePropriete.getQuartier().getPrixMaison() / 2);
+            console.info(casePropriete.getProprietaire().getNom() + " a vendu une maison sur la case " + casePropriete.getNom() + ".");
         }
     }
 

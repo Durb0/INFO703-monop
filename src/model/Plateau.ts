@@ -72,11 +72,12 @@ export class Plateau{
             [ "Boulevard de Belleville", "Rue Lecourbe" ]
             );
 
-        let taxe1 = new CaseTaxe("Taxe de Luxe", 75);
+        let taxe1 = new CaseTaxe("Impot sur le revenue", 200);
 
         this.cases.push(quartierMarron.getCases()[0]);
-        this.cases.push(taxe1);
+        this.cases.push(new Case("RIEN"));
         this.cases.push(quartierMarron.getCases()[1]);
+        this.cases.push(taxe1);
 
         
 
@@ -91,7 +92,10 @@ export class Plateau{
             50,
             [ "Rue de Vaugirard", "Rue de Courcelles", "Avenue de la République" ]
             );
-        this.cases.push(...quartierBleuCiel.getCases());
+        this.cases.push(quartierBleuCiel.getCase(0));
+        this.cases.push(new Case("RIEN"));
+        this.cases.push(quartierBleuCiel.getCase(1));
+        this.cases.push(quartierBleuCiel.getCase(2));
 
         let casePrison = new Case("Prison");
         this.cases.push(casePrison);
@@ -121,7 +125,10 @@ export class Plateau{
             100,
             [ "Avenue Mozart", "Boulevard Saint-Michel", "Place Pigalle" ]
             );
-        this.cases.push(...quartierOrange.getCases());
+        this.cases.push(quartierOrange.getCase(0));
+        this.cases.push(new Case("RIEN"));
+        this.cases.push(quartierOrange.getCase(1));
+        this.cases.push(quartierOrange.getCase(2));
 
         let parcGratuit = new Case("Parc Gratuit");
         this.cases.push(parcGratuit);
@@ -134,8 +141,10 @@ export class Plateau{
             150,
             [ "Avenue Matignon", "Boulevard Malesherbes", "Avenue Henri-Martin" ]
             );
-        this.cases.push(...quartierRouge.getCases());
-
+        this.cases.push(quartierRouge.getCase(0));
+        this.cases.push(new Case("RIEN"));
+        this.cases.push(quartierRouge.getCase(1));
+        this.cases.push(quartierRouge.getCase(2));
 
 
         this.cases.push(groupeGare.getCase(2));
@@ -148,7 +157,10 @@ export class Plateau{
             150,
             [ "Faubourg Saint-Honoré", "Place de la Bourse", "Rue la Fayette" ]
             );
-        this.cases.push(...quartierJaune.getCases());
+        this.cases.push(quartierJaune.getCase(0));
+        this.cases.push(quartierJaune.getCase(1));
+        this.cases.push(groupeService.getCase(1));
+        this.cases.push(quartierJaune.getCase(2));
 
         let caseAllerEnPrison = new Case("Allez en prison");
         this.cases.push(caseAllerEnPrison);
@@ -161,7 +173,10 @@ export class Plateau{
             200,
             [ "Avenue de Breteuil", "Avenue Foch", "Boulevard des Capucines" ]
             );
-        this.cases.push(...quartierVert.getCases());
+        this.cases.push(quartierVert.getCase(0));
+        this.cases.push(quartierVert.getCase(1));
+        this.cases.push(new Case("RIEN"));
+        this.cases.push(quartierVert.getCase(2));
 
 
         this.cases.push(groupeGare.getCase(3));
@@ -176,6 +191,7 @@ export class Plateau{
             );
         
         let taxe2 = new CaseTaxe("Taxe de Luxe", 100);
+        this.cases.push(new Case("RIEN"));
         this.cases.push(quartierBleuFonce.getCases()[0]);
         this.cases.push(taxe2);
         this.cases.push(quartierBleuFonce.getCases()[1]);
